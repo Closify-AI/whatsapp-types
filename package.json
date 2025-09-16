@@ -1,0 +1,43 @@
+{
+  "author": "Rodrigo de Souza",
+  "bugs": {
+    "url": "https://github.com/Closify-AI/whatsapp-types/issues"
+  },
+  "dependencies": {
+    "@types/node": "^24.5.0"
+  },
+  "description": "WhatsApp Business types for NodeJS",
+  "engines": {
+    "node": ">=16.19.1"
+  },
+  "homepage": "https://github.com/Closify-AI/whatsapp-types#readme",
+  "keywords": [
+    "WhatsApp",
+    "SDK",
+    "Business",
+    "Platform",
+    "types",
+    "NodeJS",
+    "Cloud API"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "name": "@types/whatsapp-business",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/",
+    "tag": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Closify-AI/whatsapp-types.git"
+  },
+  "scripts": {
+    "build": "tsc --build --clean && tsc --build",
+    "prepublish": "rm -rf ./dist/* && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "types": "./dist/*.d.ts",
+  "version": "1.0.0"
+}
