@@ -1,2 +1,2 @@
-# whatsapp-types
-WhatsApp Business types package
+# @types/whatsapp-business
+WhatsApp Business types for NodeJS
