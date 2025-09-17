@@ -22,7 +22,7 @@
   ],
   "license": "MIT",
   "main": "./dist/index.js",
-  "name": "@types/closify-ai__whatsapp-business",
+  "name": "@closify/whatsapp-business-types",
   "publishConfig": {
     "access": "public",
     "registry": "https://npm.pkg.github.com/",
