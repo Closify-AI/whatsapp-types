@@ -55,6 +55,9 @@ web_modules/
 # TypeScript configuration file
 tsconfig*.json
 
+# npm configuration file
+.npmrc
+
 # npm package-lock file
 package-lock.json
 
