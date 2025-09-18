@@ -38,6 +38,6 @@
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "type": "module",
-  "types": "./dist/*.d.ts",
+  "types": "./dist/index.d.ts",
   "version": "1.0.0-alpha"
 }
