@@ -34,9 +34,9 @@ import type {
 	ButtonPositionEnum,
 	InteractiveTypesEnum,
 } from './enums.ts';
-import type { GeneralRequestBody, RequesterResponseInterface } from './requester.ts';
+import type { GeneralRequestBodyType, RequesterResponseInterface } from './requester.ts';
 
-export type GeneralMessageBody = GeneralRequestBody & {
+export type GeneralMessageBodyType = GeneralRequestBodyType & {
 	/**
 	 * The Meta messaging product name.
 	 * @default 'whatsapp'
@@ -44,43 +44,43 @@ export type GeneralMessageBody = GeneralRequestBody & {
 	messaging_product: 'whatsapp';
 };
 
-export type StatusObject = {
+export type StatusMessageType = {
 	status: 'read';
 	message_id: string;
 };
 
-export type StatusRequestBody = GeneralMessageBody & StatusObject;
+export type StatusRequestBodyType = GeneralMessageBodyType & StatusMessageType;
 
-type ConTextObject = {
+export type MessageContextType = {
 	message_id: string;
 };
 
-export type MessageRequestBody<T extends MessageTypesEnum> =
-	GeneralMessageBody & {
+export type MessageRequestBodyType<T extends MessageTypesEnum> =
+	GeneralMessageBodyType & {
 		recipient_type?: string;
 		to: string;
-		context?: ConTextObject;
+		context?: MessageContextType;
 		type?: T;
 	};
 
-type MetaAudioMediaObject = {
+export type MetaAudioMediaType = {
 	id: string;
 	link?: never;
 };
 
-type HostedAudioMediaObject = {
+export type HostedAudioMediaType = {
 	id?: never;
 	link: string;
 };
 
-export type AudioMediaObject = MetaAudioMediaObject | HostedAudioMediaObject;
+export type AudioMediaType = MetaAudioMediaType | HostedAudioMediaType;
 
-export type AudioMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Audio> & {
-		[MessageTypesEnum.Audio]: [AudioMediaObject];
+export type AudioMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Audio> & {
+		[MessageTypesEnum.Audio]: [AudioMediaType];
 	};
 
-type AddressesObject = {
+export type MessageAddressesType = {
 	street?: string;
 	city?: string;
 	state?: string;
@@ -90,12 +90,12 @@ type AddressesObject = {
 	type?: 'HOME' | 'WORK' | string;
 };
 
-type EmailObject = {
+export type MessageEmailType = {
 	email?: string;
 	type?: 'HOME' | 'WORK' | string;
 };
 
-type NameObject = {
+export type MessageNameType = {
 	formatted_name: string;
 	first_name?: string;
 	last_name?: string;
@@ -104,329 +104,329 @@ type NameObject = {
 	prefix?: string;
 };
 
-type OrgObject = {
+export type MessageOrgType = {
 	company?: string;
 	department?: string;
 	title?: string;
 };
 
-type PhoneObject = {
+export type MessagePhoneType = {
 	phone?: 'PHONE_NUMBER';
 	type?: 'CELL' | 'MAIN' | 'IPHONE' | 'HOME' | 'WORK' | string;
 	wa_id?: string;
 };
 
-type URLObject = {
+export type MessageURLType = {
 	url?: string;
 	type?: 'HOME' | 'WORK' | string;
 };
 
-export type ContactObject = {
-	addresses?: AddressesObject[];
+export type ContactMessageType = {
+	addresses?: MessageAddressesType[];
 	birthday?: `${number}${number}${number}${number}-${number}${number}-${number}${number}`;
-	emails?: EmailObject[];
-	name: NameObject;
-	org?: OrgObject;
-	phones?: PhoneObject[];
-	urls?: URLObject[];
+	emails?: MessageEmailType[];
+	name: MessageNameType;
+	org?: MessageOrgType;
+	phones?: MessagePhoneType[];
+	urls?: MessageURLType[];
 };
 
-export type ContactsMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Contacts> & {
-		[MessageTypesEnum.Contacts]: [ContactObject];
+export type ContactsMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Contacts> & {
+		[MessageTypesEnum.Contacts]: [ContactMessageType];
 	};
 
-type MetaDocumentMediaObject = {
+export type MetaDocumentMediaType = {
 	id: string;
 	link?: never;
 	caption?: string;
 	filename?: string;
 };
 
-type HostedDocumentMediaObject = {
+export type HostedDocumentMediaType = {
 	id?: never;
 	link: string;
 	caption?: string;
 	filename?: string;
 };
 
-export type DocumentMediaObject =
-	| MetaDocumentMediaObject
-	| HostedDocumentMediaObject;
+export type DocumentMediaMessageType =
+	| MetaDocumentMediaType
+	| HostedDocumentMediaType;
 
-export type DocumentMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Document> & {
-		[MessageTypesEnum.Document]: [DocumentMediaObject];
+export type DocumentMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Document> & {
+		[MessageTypesEnum.Document]: [DocumentMediaMessageType];
 	};
 
-type MetaImageMediaObject = {
+export type MetaImageMediaType = {
 	id: string;
 	link?: never;
 	caption?: string;
 };
 
-type HostedImageMediaObject = {
+export type HostedImageMediaType = {
 	id?: never;
 	link: string;
 	caption?: string;
 };
 
-export type ImageMediaObject = MetaImageMediaObject | HostedImageMediaObject;
+export type ImageMediaMessageType = MetaImageMediaType | HostedImageMediaType;
 
-export type ImageMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Image> & {
-		[MessageTypesEnum.Image]: [ImageMediaObject];
+export type ImageMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Image> & {
+		[MessageTypesEnum.Image]: [ImageMediaMessageType];
 	};
 
-type ProductObject = {
+export type MessageProductType = {
 	product_retailer_id: string;
 };
 
-type SimpleTextObject = {
+export type MessageSimpleTextType = {
 	text: string;
 };
 
-type RowObject = {
+export type MessageRowType = {
 	id: string;
 	title: string;
 	description?: string;
 };
 
-type MultiProductSectionObject = {
-	product_items: ProductObject[];
+export type MultiProductSectionType = {
+	product_items: MessageProductType[];
 	rows?: never;
 	title?: string;
 };
 
-type ListSectionObject = {
+export type ListSectionType = {
 	product_items?: never;
-	rows: RowObject[];
+	rows: MessageRowType[];
 	title?: string;
 };
 
-type SectionObject = MultiProductSectionObject | ListSectionObject;
+export type MessageSectionType = MultiProductSectionType | ListSectionType;
 
-type ButtonObject = {
+export type MessageButtonType = {
 	title: string;
 	id: string;
 };
 
-type ReplyButtonObject = {
+export type MessageReplyButtonType = {
 	type: 'reply';
-	reply: ButtonObject;
+	reply: MessageButtonType;
 };
 
-type ActionObject = {
+export type MessageActionType = {
 	button?: string;
-	buttons?: ReplyButtonObject[];
+	buttons?: MessageReplyButtonType[];
 	catalog_id?: string;
 	product_retailer_id?: string;
-	sections?: SectionObject;
+	sections?: MessageSectionType;
 };
 
-type HeaderObject = {
+export type MessageHeaderType = {
 	type: 'document' | 'image' | 'text' | 'video';
-	document?: DocumentMediaObject;
-	image?: ImageMediaObject;
+	document?: DocumentMediaMessageType;
+	image?: ImageMediaMessageType;
 	text?: string;
-	video?: VideoMediaObject;
+	video?: VideoMediaMessageType;
 };
 
-type ButtonInteractiveObject = {
+export type ButtonInteractiveType = {
 	type: InteractiveTypesEnum.Button;
-	body: SimpleTextObject;
-	footer?: SimpleTextObject;
-	header?: HeaderObject;
-	action: ActionObject;
+	body: MessageSimpleTextType;
+	footer?: MessageSimpleTextType;
+	header?: MessageHeaderType;
+	action: MessageActionType;
 };
 
-type ListInteractiveObject = {
+export type ListInteractiveType = {
 	type: InteractiveTypesEnum.List;
-	body: SimpleTextObject;
-	footer?: SimpleTextObject;
-	header?: HeaderObject;
-	action: ActionObject;
+	body: MessageSimpleTextType;
+	footer?: MessageSimpleTextType;
+	header?: MessageHeaderType;
+	action: MessageActionType;
 };
 
-type ProductInteractiveObject = {
+export type ProductInteractiveType = {
 	type: InteractiveTypesEnum.Product;
-	body?: SimpleTextObject;
-	footer?: SimpleTextObject;
-	header?: HeaderObject;
-	action: ActionObject;
+	body?: MessageSimpleTextType;
+	footer?: MessageSimpleTextType;
+	header?: MessageHeaderType;
+	action: MessageActionType;
 };
 
-type ProductListInteractiveObject = {
+export type ProductListInteractiveType = {
 	type: InteractiveTypesEnum.ProductList;
-	body: SimpleTextObject;
-	footer?: SimpleTextObject;
-	header: HeaderObject;
-	action: ActionObject;
+	body: MessageSimpleTextType;
+	footer?: MessageSimpleTextType;
+	header: MessageHeaderType;
+	action: MessageActionType;
 };
 
-export type InteractiveObject =
-	| ButtonInteractiveObject
-	| ListInteractiveObject
-	| ProductInteractiveObject
-	| ProductListInteractiveObject;
+export type InteractiveMessageType =
+	| ButtonInteractiveType
+	| ListInteractiveType
+	| ProductInteractiveType
+	| ProductListInteractiveType;
 
-export type InteractiveMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Interactive> & {
-		[MessageTypesEnum.Interactive]: InteractiveObject;
+export type InteractiveMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Interactive> & {
+		[MessageTypesEnum.Interactive]: InteractiveMessageType;
 	};
 
-type MetaStickerMediaObject = {
+export type MetaStickerMediaType = {
 	id: string;
 	link?: never;
 };
 
-type HostedStickerMediaObject = {
+export type HostedStickerMediaType = {
 	id?: never;
 	link: string;
 };
 
-export type StickerMediaObject =
-	| MetaStickerMediaObject
-	| HostedStickerMediaObject;
+export type StickerMediaMessageType =
+	| MetaStickerMediaType
+	| HostedStickerMediaType;
 
-export type StickerMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Sticker> & {
-		[MessageTypesEnum.Sticker]: [StickerMediaObject];
+export type StickerMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Sticker> & {
+		[MessageTypesEnum.Sticker]: [StickerMediaMessageType];
 	};
 
-type ReActionObject = {
+export type ReactionMessageType = {
 	message_id: string;
 	emoji: string;
 };
 
-export type ReactionMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Reaction> & ReActionObject;
+export type ReactionMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Reaction> & ReactionMessageType;
 
-export type TextObject = {
+export type TextMessageType = {
 	body: string;
 	preview_url?: boolean;
 };
 
-export type TextMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Text> & {
-		[MessageTypesEnum.Text]: [TextObject];
+export type TextMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Text> & {
+		[MessageTypesEnum.Text]: [TextMessageType];
 	};
 
-type MetaHostedVideoMediaObject = {
+export type MetaHostedVideoMediaType = {
 	id: string;
 	link?: never;
 	caption?: string;
 };
 
-type SelfHostedVideoMediaObject = {
+export type SelfHostedVideoMediaType = {
 	id?: never;
 	link: string;
 	caption?: string;
 };
 
-export type VideoMediaObject =
-	| MetaHostedVideoMediaObject
-	| SelfHostedVideoMediaObject;
+export type VideoMediaMessageType =
+	| MetaHostedVideoMediaType
+	| SelfHostedVideoMediaType;
 
-export type VideoMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Video> & {
-		[MessageTypesEnum.Video]: [VideoMediaObject];
+export type VideoMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Video> & {
+		[MessageTypesEnum.Video]: [VideoMediaMessageType];
 	};
 
-type LanguageObject = {
+export type MessageLanguageType = {
 	policy: 'deterministic';
 	code: LanguagesEnum;
 };
 
-type ParametersObject<T extends ParametersTypesEnum> = {
+export type MessageParametersType<T extends ParametersTypesEnum> = {
 	type: T;
 };
 
-type TextParametersObject = ParametersObject<ParametersTypesEnum.Text> &
-	SimpleTextObject;
+export type TextParametersType = MessageParametersType<ParametersTypesEnum.Text> &
+	MessageSimpleTextType;
 
-type CurrencyObject = {
+export type MessageCurrencyType = {
 	fallback_value: string;
 	code: CurrencyCodesEnum;
 	amount_1000: number;
 };
 
-type CurrencyParametersObject =
-	ParametersObject<ParametersTypesEnum.Currency> & {
-		currency: CurrencyObject;
+export type CurrencyParametersType =
+	MessageParametersType<ParametersTypesEnum.Currency> & {
+		currency: MessageCurrencyType;
 	};
 
-type DateTimeObject = {
+export type MessageDateTimeType = {
 	fallback_value: string;
 };
 
-type DateTimeParametersObject =
-	ParametersObject<ParametersTypesEnum.Currency> & {
-		date_time: CurrencyObject;
+export type DateTimeParametersType =
+	MessageParametersType<ParametersTypesEnum.Currency> & {
+		date_time: MessageCurrencyType;
 	};
 
-type DocumentParametersObject = ParametersObject<ParametersTypesEnum.Document> &
-	DocumentMediaObject;
+export type DocumentParametersType = MessageParametersType<ParametersTypesEnum.Document> &
+	DocumentMediaMessageType;
 
-type ImageParametersObject = ParametersObject<ParametersTypesEnum.Image> &
-	ImageMediaObject;
+export type ImageParametersType = MessageParametersType<ParametersTypesEnum.Image> &
+	ImageMediaMessageType;
 
-type VideoParametersObject = ParametersObject<ParametersTypesEnum.Video> &
-	VideoMediaObject;
+export type VideoParametersType = MessageParametersType<ParametersTypesEnum.Video> &
+	VideoMediaMessageType;
 
-type QuickReplyButtonParametersObject = {
+export type QuickReplyButtonParametersType = {
 	type: ParametersTypesEnum.Payload;
 	payload: string;
 };
 
-type URLButtonParametersObject = SimpleTextObject & {
+export type URLButtonParametersType = MessageSimpleTextType & {
 	type: ParametersTypesEnum.Text;
 };
 
-type ButtonParameterObject =
-	| QuickReplyButtonParametersObject
-	| URLButtonParametersObject;
+export type ButtonParameterType =
+	| QuickReplyButtonParametersType
+	| URLButtonParametersType;
 
-type ComponentObject<T extends ComponentTypesEnum> = {
+export type MessageComponentType<T extends ComponentTypesEnum> = {
 	type: T;
 	parameters: (
-		| CurrencyParametersObject
-		| DateTimeParametersObject
-		| DocumentParametersObject
-		| ImageParametersObject
-		| TextParametersObject
-		| VideoParametersObject
+		| CurrencyParametersType
+		| DateTimeParametersType
+		| DocumentParametersType
+		| ImageParametersType
+		| TextParametersType
+		| VideoParametersType
 	)[];
 };
 
-type ButtonComponentObject = ComponentObject<ComponentTypesEnum.Button> & {
-	parameters: ButtonParameterObject;
+export type ButtonComponentType = MessageComponentType<ComponentTypesEnum.Button> & {
+	parameters: ButtonParameterType;
 	sub_type: ButtonTypesEnum;
 	index: ButtonPositionEnum;
 };
 
-export type MessageTemplateObject<T extends ComponentTypesEnum> = {
+export type MessageTemplateType<T extends ComponentTypesEnum> = {
 	name: string;
-	language: LanguageObject;
-	components?: (ComponentObject<T> | ButtonComponentObject)[];
+	language: MessageLanguageType;
+	components?: (MessageComponentType<T> | ButtonComponentType)[];
 };
 
-export type MessageTemplateRequestBody<T extends ComponentTypesEnum> =
-	MessageRequestBody<MessageTypesEnum.Template> & MessageTemplateObject<T>;
+export type MessageTemplateRequestBodyType<T extends ComponentTypesEnum> =
+	MessageRequestBodyType<MessageTypesEnum.Template> & MessageTemplateType<T>;
 
-export type LocationObject = {
+export type LocationMessageType = {
 	longitude: number;
 	latitude: number;
 	name?: string;
 	address?: string;
 };
 
-export type LocationMessageRequestBody =
-	MessageRequestBody<MessageTypesEnum.Location> & {
-		[MessageTypesEnum.Location]: [LocationObject];
+export type LocationMessageRequestBodyType =
+	MessageRequestBodyType<MessageTypesEnum.Location> & {
+		[MessageTypesEnum.Location]: [LocationMessageType];
 	};
 
-export type MessagesResponse = GeneralMessageBody & {
+export type MessagesResponseType = GeneralMessageBodyType & {
 	contacts: [
 		{
 			input: string;
@@ -442,56 +442,56 @@ export type MessagesResponse = GeneralMessageBody & {
 
 export declare class MessagesClass extends BaseClass {
 	audio(
-		body: AudioMediaObject,
+		body: AudioMediaType,
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	contacts(
-		body: [ContactObject],
+		body: [ContactMessageType],
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	document(
-		body: DocumentMediaObject,
+		body: DocumentMediaMessageType,
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	image(
-		body: ImageMediaObject,
+		body: ImageMediaMessageType,
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	interactive(
-		body: InteractiveObject,
+		body: InteractiveMessageType,
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	location(
-		body: LocationObject,
+		body: LocationMessageType,
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	status(
-		body: StatusObject,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+		body: StatusMessageType,
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	sticker(
-		body: StickerMediaObject,
+		body: StickerMediaMessageType,
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	template(
-		body: MessageTemplateObject<ComponentTypesEnum>,
+		body: MessageTemplateType<ComponentTypesEnum>,
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	text(
-		body: TextObject,
+		body: TextMessageType,
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 	video(
-		body: VideoMediaObject,
+		body: VideoMediaMessageType,
 		recipient: number,
 		replyMessageId?: string,
-	): Promise<RequesterResponseInterface<MessagesResponse>>;
+	): Promise<RequesterResponseInterface<MessagesResponseType>>;
 }

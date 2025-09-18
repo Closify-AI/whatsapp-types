@@ -40,53 +40,53 @@ import type {
 } from './enums.ts';
 import type { BaseClass } from './base.ts';
 
-type PricingObject = {
+export type WebhookPricingType = {
 	category: ConversationTypesEnum;
 	pricing_model: 'CBP';
 };
 
-type OriginObject = {
+export type WebhookOriginType = {
 	type: ConversationTypesEnum;
 };
 
-type ConversationObject = {
+export type WebhookConversationType = {
 	id: string;
-	origin: OriginObject;
+	origin: WebhookOriginType;
 	expiration_timestamp: string;
 };
 
-type ErrorDataObject = {
+export type WebhookErrorDataType = {
 	details: string;
 };
 
-type ErrorObject = {
+export type WebhookErrorType = {
 	code: number;
 	title: string;
 	message: string;
-	error_data: ErrorDataObject;
+	error_data: WebhookErrorDataType;
 };
 
-export type StatusesObject = {
-	conversation: ConversationObject;
-	errors: ErrorObject[];
+export type WebhookStatusesType = {
+	conversation: WebhookConversationType;
+	errors: WebhookErrorType[];
 	id: string;
-	pricing: PricingObject;
+	pricing: WebhookPricingType;
 	recipient_id: string;
 	status: StatusEnum;
 	timestamp: string;
 };
 
-type AudioObject = {
+export type WebhookAudioType = {
 	id: string;
 	mime_type: string;
 };
 
-type ButtonObject = {
+export type WebhookButtonType = {
 	payload: string;
 	text: string;
 };
 
-type ConTextObject = {
+export type WebhookContextType = {
 	forwarded: boolean;
 	frequently_forwarded: boolean;
 	from: string;
@@ -97,7 +97,7 @@ type ConTextObject = {
 	};
 };
 
-type DocumentObject = {
+export type WebhookDocumentType = {
 	caption: string;
 	filename: string;
 	sha256: string;
@@ -105,27 +105,27 @@ type DocumentObject = {
 	id: string;
 };
 
-type IdentityObject = {
+export type WebhookIdentityType = {
 	acknowledged: string;
 	created_timestamp: string;
 	hash: string;
 };
 
-type ImageObject = {
+export type WebhookImageType = {
 	caption: string;
 	sha256: string;
 	id: string;
 	mime_type: ImageMediaTypesEnum;
 };
 
-type ButtonReplyObject = {
+export type WebhookButtonReplyType = {
 	button_reply: {
 		id: string;
 		title: string;
 	};
 };
 
-type ListReplyObject = {
+export type WebhookListReplyType = {
 	list_reply: {
 		id: string;
 		title: string;
@@ -133,24 +133,24 @@ type ListReplyObject = {
 	};
 };
 
-type InteractiveObject = {
-	type: ButtonReplyObject | ListReplyObject;
+export type WebhookInteractiveType = {
+	type: WebhookButtonReplyType | WebhookListReplyType;
 };
 
-type ProductItemsObject = {
+export type WebhookProductItemsType = {
 	product_retailer_id: string;
 	quantity: string;
 	item_price: string;
 	currency: CurrencyCodesEnum;
 };
 
-type Order_Object = {
+export type WebhookOrderType = {
 	catalog_id: string;
 	text: string;
-	product_items: ProductItemsObject;
+	product_items: WebhookProductItemsType;
 };
 
-type ReferralObject = {
+export type WebhookReferralType = {
 	source_url: URL;
 	source_type: ReferralSourceTypesEnum;
 	source_id: string;
@@ -162,14 +162,14 @@ type ReferralObject = {
 	thumbnail_url: URL;
 };
 
-type StickerObject = {
+export type WebhookStickerType = {
 	mime_type: StickerMediaTypesEnum;
 	sha256: string;
 	id: string;
 	animated: boolean;
 };
 
-type SystemObject = {
+export type WebhookSystemType = {
 	body: string;
 	identity: string;
 	wa_id: string;
@@ -177,11 +177,11 @@ type SystemObject = {
 	customer: string;
 };
 
-type TextObject = {
+export type WebhookTextType = {
 	body: string;
 };
 
-type VideoObject = {
+export type WebhookVideoType = {
 	caption: string;
 	filename: string;
 	sha256: string;
@@ -189,65 +189,65 @@ type VideoObject = {
 	mime_type: VideoMediaTypesEnum;
 };
 
-export type MessagesObject = {
-	audio?: AudioObject;
-	button?: ButtonObject;
-	context?: ConTextObject;
-	document?: DocumentObject;
-	errors: ErrorObject[];
+export type WebhookMessagesType = {
+	audio?: WebhookAudioType;
+	button?: WebhookButtonType;
+	context?: WebhookContextType;
+	document?: WebhookDocumentType;
+	errors: WebhookErrorType[];
 	from: string;
 	id: string;
-	identity?: IdentityObject;
-	image?: ImageObject;
-	interactive?: InteractiveObject;
-	order?: Order_Object;
-	referral: ReferralObject;
-	system?: SystemObject;
-	text?: TextObject;
+	identity?: WebhookIdentityType;
+	image?: WebhookImageType;
+	interactive?: WebhookInteractiveType;
+	order?: WebhookOrderType;
+	referral: WebhookReferralType;
+	system?: WebhookSystemType;
+	text?: WebhookTextType;
 	timestamp: string;
 	type: WebhookTypesEnum;
-	video?: VideoObject;
+	video?: WebhookVideoType;
 };
 
-type ProfileObject = {
+export type WebhookProfileType = {
 	name: string;
 };
 
-type ContactObject = {
+export type WebhookContactType = {
 	wa_id: string;
-	profile: ProfileObject;
+	profile: WebhookProfileType;
 };
 
-type MetadataObject = {
+export type WebhookMetadataType = {
 	display_phone_number: string;
 	phoneNumberId: string;
 };
 
-export type ValueObject = {
+export type WebhookValueType = {
 	messaging_product: 'whatsapp';
-	contacts: ContactObject[];
-	errors: ErrorObject[];
-	messages: MessagesObject[];
-	metadata: MetadataObject[];
-	statuses: StatusesObject[];
+	contacts: WebhookContactType[];
+	errors: WebhookErrorType[];
+	messages: WebhookMessagesType[];
+	metadata: WebhookMetadataType[];
+	statuses: WebhookStatusesType[];
 };
 
-type ChangesObject = {
+export type WebhookChangesType = {
 	field: string;
-	value: ValueObject;
+	value: WebhookValueType;
 };
 
-type Entry_Object = {
+export type WebhookEntryType = {
 	id: string;
-	changes: ChangesObject[];
+	changes: WebhookChangesType[];
 };
 
-export type WebhookObject = {
+export type WebhookType = {
 	object: 'whatsapp_business_account';
-	entry: Entry_Object[];
+	entry: WebhookEntryType[];
 };
 
-export type WebhookSubscribeQuery = {
+export type WebhookSubscribeQueryType = {
 	hub: {
 		mode: 'subscribe';
 		challenge: string;
@@ -255,17 +255,17 @@ export type WebhookSubscribeQuery = {
 	};
 };
 
-export type WebhookCallback = (
+export type WebhookCallbackType = (
 	statusCode: number,
 	headers: IncomingHttpHeaders,
-	body?: WebhookObject,
+	body?: WebhookType,
 	response?: ServerResponse,
 	error?: Error,
 ) => any;
 
 export declare class WebhooksClass extends BaseClass {
 	constructor(config: WAConfigType, userAgent: string);
-	start(cb: WebhookCallback): boolean;
+	start(cb: WebhookCallbackType): boolean;
 	isStarted(): boolean;
 	stop(cb: (err?: Error) => any): boolean;
 }

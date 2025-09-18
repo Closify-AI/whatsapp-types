@@ -24,15 +24,15 @@
  */
 
 import type {
-  RequestHeaders,
+  RequestHeadersType,
   HttpsClientResponseClass,
-  ResponseJSONBody,
+  ResponseJSONBodyType,
 } from './httpsClient.ts';
 import type { HttpMethodsEnum } from './enums.ts';
 
-export type GeneralRequestBody = Record<string, any>;
+export type GeneralRequestBodyType = Record<string, any>;
 
-export interface GeneralHeaderInterface extends RequestHeaders {
+export interface GeneralHeaderInterface extends RequestHeadersType {
   /**
    * Authorization token. This is required for all HTTP requests made to the graph API.
    * @default 'Bearer '
@@ -53,7 +53,7 @@ export interface GeneralHeaderInterface extends RequestHeaders {
   'User-Agent': string;
 }
 
-export interface RequesterResponseInterface<T extends ResponseJSONBody>
+export interface RequesterResponseInterface<T extends ResponseJSONBodyType>
   extends HttpsClientResponseClass {
   responseBodyToJSON: () => Promise<T>;
 }

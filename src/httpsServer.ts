@@ -25,7 +25,7 @@
 
 import http from 'http';
 
-export declare class HttpserverClass {
+export declare class HttpsServerClass {
 	constructor(
 		port: number,
 		cb: (req: http.IncomingMessage, res: http.ServerResponse) => any,

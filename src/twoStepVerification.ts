@@ -26,16 +26,16 @@
 import type { BaseClass } from './base.ts';
 import type { RequesterResponseInterface } from './requester.ts';
 
-export type TwoStepVerificationObject = {
+export type TwoStepVerificationType = {
 	pin: string;
 };
 
-export type SetPinResponseObject = {
+export type SetPinResponseType = {
 	success: boolean;
 };
 
 export declare class TwoStepVerificationClass extends BaseClass {
 	setPin(
 		pin: number,
-	): Promise<RequesterResponseInterface<SetPinResponseObject>>;
+	): Promise<RequesterResponseInterface<SetPinResponseType>>;
 }

@@ -23,6 +23,6 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-type semanticVersionLabels = '-Alpha' | '-Beta' | '';
-export type semanticVersionString =
-	`${number}.${number}.${number}${semanticVersionLabels}`;
+export type SemanticVersionLabelsType = '-Alpha' | '-Beta' | '';
+export type SemanticVersionStringType =
+	`${number}.${number}.${number}${SemanticVersionLabelsType}`;

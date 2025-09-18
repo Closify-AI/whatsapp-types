@@ -26,24 +26,24 @@
 import type { HttpMethodsEnum } from './enums.ts';
 import { IncomingMessage } from 'http';
 
-export type ResponseHeaderValue = string | string[] | undefined;
+export type ResponseHeaderValueType = string | string[] | undefined;
 
-export type RequestHeaders = Record<string, string | number | string[]>;
+export type RequestHeadersType = Record<string, string | number | string[]>;
 
-export type ResponseHeaders = Record<string, ResponseHeaderValue>;
+export type ResponseHeadersType = Record<string, ResponseHeaderValueType>;
 
-export type ResponseJSONBody = Record<string, unknown>;
+export type ResponseJSONBodyType = Record<string, unknown>;
 
-export type RequestData = Record<string, unknown> | string;
+export type RequestDataType = Record<string, unknown> | string;
 
-export type TimeoutError = TypeError & { code?: string };
+export type TimeoutErrorType = TypeError & { code?: string };
 
 export declare class HttpsClientResponseClass {
 	constructor(resp: IncomingMessage);
 	statusCode: () => number;
-	headers: () => ResponseHeaders;
+	headers: () => ResponseHeadersType;
 	rawResponse: () => IncomingMessage;
-	responseBodyToJSON: () => Promise<ResponseJSONBody>;
+	responseBodyToJSON: () => Promise<ResponseJSONBodyType>;
 }
 
 export declare class HttpsClientClass {
@@ -54,8 +54,8 @@ export declare class HttpsClientClass {
 		port: number,
 		path: string,
 		method: HttpMethodsEnum,
-		headers: RequestHeaders,
+		headers: RequestHeadersType,
 		timeout: number,
-		data?: RequestData,
+		data?: RequestDataType,
 	) => Promise<HttpsClientResponseClass>;
 }

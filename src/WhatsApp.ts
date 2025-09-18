@@ -23,11 +23,11 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import type { semanticVersionString } from './version.ts';
+import type { SemanticVersionStringType } from './version.ts';
 
 export declare class WhatsAppClass {
 	constructor(senderNumberId?: number);
-	version: () => semanticVersionString;
+	version: () => SemanticVersionStringType;
 	updateTimeout(ms: number): boolean;
 	updateSenderNumberId(phoneNumberId: number): boolean;
 	updateAccessToken(accessToken: string): boolean;
