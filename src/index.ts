@@ -26,26 +26,183 @@
 // types 
 export { BaseClass } from './types/base.js';
 export type { WAConfigType } from './types/config.js';
-export { AudioMediaTypesEnum, ButtonPositionEnum, ButtonTypesEnum, ComponentTypesEnum, ConversationTypesEnum, CurrencyCodesEnum, DocumentMediaTypesEnum, HttpMethodsEnum, ImageMediaTypesEnum, InteractiveTypesEnum, LanguagesEnum, MessageTypesEnum, ParametersTypesEnum, ReferralSourceTypesEnum, StatusEnum, StickerMediaTypesEnum, SystemChangeTypesEnum, VideoMediaTypesEnum, WAConfigEnum, WARequiredConfigEnum, WebhookTypesEnum } from './types/enums.js';
 export { HttpsServerClass } from './types/httpsServer.js';
 export type { LoggerInterface } from './types/logger.js';
-export type { SemanticVersionLabelsType, SemanticVersionStringType } from './types/version.js';
+export { MessagesClass } from './types/messages.js';
+export { RequesterClass } from './types/requester.js';
+export { TwoStepVerificationClass } from './types/twoStepVerification.js';
+export { WebhooksClass } from './types/webhooks.js';
 export { WhatsAppClass } from './types/WhatsApp.js';
 
-export { HttpsClientClass, HttpsClientResponseClass } from './types/httpsClient.js';
-export type { RequestDataType, RequestHeadersType, ResponseHeadersType, ResponseHeaderValueType, ResponseJSONBodyType, TimeoutErrorType } from './types/httpsClient.js';
+export {
+  AudioMediaTypesEnum,
+  ButtonPositionEnum,
+  ButtonTypesEnum,
+  ComponentTypesEnum,
+  ConversationTypesEnum,
+  CurrencyCodesEnum,
+  DocumentMediaTypesEnum,
+  HttpMethodsEnum,
+  ImageMediaTypesEnum,
+  InteractiveTypesEnum,
+  LanguagesEnum,
+  MessageTypesEnum,
+  ParametersTypesEnum,
+  ReferralSourceTypesEnum,
+  StatusEnum,
+  StickerMediaTypesEnum,
+  SystemChangeTypesEnum,
+  VideoMediaTypesEnum,
+  WAConfigEnum,
+  WARequiredConfigEnum,
+  WebhookTypesEnum
+} from './types/enums.js';
 
-export { MessagesClass } from './types/messages.js';
-export type { AudioMediaType, AudioMessageRequestBodyType, ButtonComponentType, ButtonInteractiveType, ButtonParameterType, ContactMessageType, ContactsMessageRequestBodyType, CurrencyParametersType, DateTimeParametersType, DocumentMediaMessageType, DocumentMessageRequestBodyType, DocumentParametersType, GeneralMessageBodyType, HostedAudioMediaType, HostedDocumentMediaType, HostedImageMediaType, HostedStickerMediaType, ImageMediaMessageType, ImageMessageRequestBodyType, ImageParametersType, InteractiveMessageRequestBodyType, InteractiveMessageType, ListInteractiveType, ListSectionType, LocationMessageRequestBodyType, LocationMessageType, MessageActionType, MessageAddressActionType, MessageAddressBaseType, MessageAddressesType, MessageButtonType, MessageComponentType, MessageContextType, MessageCurrencyType, MessageDateTimeType, MessageEmailType, MessageHeaderType, MessageLanguageType, MessageNameType, MessageOrgType, MessageParametersType, MessagePhoneType, MessageProductType, MessageReplyButtonType, MessageRequestBodyType, MessageRowType, MessageSectionType, MessageSimpleTextType, MessagesResponseType, MessageTemplateRequestBodyType, MessageTemplateType, MessageURLType, MetaAudioMediaType, MetaDocumentMediaType, MetaHostedVideoMediaType, MetaImageMediaType, MetaStickerMediaType, MultiProductSectionType, ProductInteractiveType, QuickReplyButtonParametersType, ReactionMessageRequestBodyType, ReactionMessageType, SelfHostedVideoMediaType, StatusMessageType, StatusRequestBodyType, StickerMediaMessageType, StickerMessageRequestBodyType, TextMessageRequestBodyType, TextMessageType, TextParametersType, URLButtonParametersType, VideoMediaMessageType, VideoMessageRequestBodyType, VideoParametersType } from './types/messages.js';
+export {
+  HttpsClientClass,
+  HttpsClientResponseClass
+} from './types/httpsClient.js';
 
-export { RequesterClass } from './types/requester.js';
-export type { GeneralHeaderInterface, GeneralRequestBodyType, RequesterResponseInterface } from './types/requester.js';
+export type {
+  RequestDataType,
+  RequestHeadersType,
+  ResponseHeadersType,
+  ResponseHeaderValueType,
+  ResponseJSONBodyType,
+  TimeoutErrorType
+} from './types/httpsClient.js';
 
-export { TwoStepVerificationClass } from './types/twoStepVerification.js';
-export type { SetPinResponseType, TwoStepVerificationType } from './types/twoStepVerification.js';
+export type {
+  AudioMediaType,
+  AudioMessageRequestBodyType,
+  ButtonComponentType,
+  ButtonInteractiveType,
+  ButtonParameterType,
+  CallToActionInteractiveType,
+  ContactMessageType,
+  ContactsMessageRequestBodyType,
+  CurrencyParametersType,
+  DateTimeParametersType,
+  DocumentMediaMessageType,
+  DocumentMessageRequestBodyType,
+  DocumentParametersType,
+  GeneralMessageBodyType,
+  HostedAudioMediaType,
+  HostedDocumentMediaType,
+  HostedImageMediaType,
+  HostedStickerMediaType,
+  ImageMediaMessageType,
+  ImageMessageRequestBodyType,
+  ImageParametersType,
+  InteractiveMessageRequestBodyType,
+  InteractiveMessageType,
+  ListInteractiveType,
+  ListSectionType,
+  LocationMessageRequestBodyType,
+  LocationMessageType,
+  MessageActionType,
+  MessageAddressActionType,
+  MessageAddressBaseType,
+  MessageAddressesType,
+  MessageButtonType,
+  MessageComponentType,
+  MessageContextType,
+  MessageCTAButtonActionType,
+  MessageCurrencyType,
+  MessageDateTimeType,
+  MessageEmailType,
+  MessageHeaderType,
+  MessageLanguageType,
+  MessageNameType,
+  MessageOrgType,
+  MessageParametersType,
+  MessagePhoneType,
+  MessageProductType,
+  MessageReplyButtonType,
+  MessageRequestBodyType,
+  MessageRowType,
+  MessageSectionType,
+  MessageSimpleTextType,
+  MessagesResponseType,
+  MessageTemplateRequestBodyType,
+  MessageTemplateType,
+  MessageURLType,
+  MetaAudioMediaType,
+  MetaDocumentMediaType,
+  MetaHostedVideoMediaType,
+  MetaImageMediaType,
+  MetaStickerMediaType,
+  MultiProductSectionType,
+  ProductInteractiveType,
+  QuickReplyButtonParametersType,
+  ReactionMessageRequestBodyType,
+  ReactionMessageType,
+  SelfHostedVideoMediaType,
+  StatusMessageType,
+  StatusRequestBodyType,
+  StickerMediaMessageType,
+  StickerMessageRequestBodyType,
+  TextMessageRequestBodyType,
+  TextMessageType,
+  TextParametersType,
+  URLButtonParametersType,
+  VideoMediaMessageType,
+  VideoMessageRequestBodyType,
+  VideoParametersType
+} from './types/messages.js';
 
-export { WebhooksClass } from './types/webhooks.js';
-export type { WebhookAudioType, WebhookButtonReplyType, WebhookButtonType, WebhookCallbackType, WebhookChangesType, WebhookContactType, WebhookContextType, WebhookConversationType, WebhookDocumentType, WebhookEntryType, WebhookErrorDataType, WebhookErrorType, WebhookIdentityType, WebhookImageType, WebhookInteractiveType, WebhookListReplyType, WebhookMessagesType, WebhookMetadataType, WebhookNfmReplyType, WebhookOrderType, WebhookOriginType, WebhookPricingType, WebhookProductItemsType, WebhookProfileType, WebhookReferralType, WebhookStatusesType, WebhookStickerType, WebhookSubscribeQueryType, WebhookSystemType, WebhookTextType, WebhookType, WebhookValueType, WebhookVideoType } from './types/webhooks.js';
+export type {
+  GeneralHeaderInterface,
+  GeneralRequestBodyType,
+  RequesterResponseInterface
+} from './types/requester.js';
+
+export type {
+  SetPinResponseType,
+  TwoStepVerificationType
+} from './types/twoStepVerification.js';
+
+export type {
+  SemanticVersionLabelsType,
+  SemanticVersionStringType
+} from './types/version.js';
+
+export type {
+  WebhookAudioType,
+  WebhookButtonReplyType,
+  WebhookButtonType,
+  WebhookCallbackType,
+  WebhookChangesType,
+  WebhookContactType,
+  WebhookContextType,
+  WebhookConversationType,
+  WebhookDocumentType,
+  WebhookEntryType,
+  WebhookErrorDataType,
+  WebhookErrorType,
+  WebhookIdentityType,
+  WebhookImageType,
+  WebhookInteractiveType,
+  WebhookListReplyType,
+  WebhookMessagesType,
+  WebhookMetadataType,
+  WebhookNfmReplyType,
+  WebhookOrderType,
+  WebhookOriginType,
+  WebhookPricingType,
+  WebhookProductItemsType,
+  WebhookProfileType,
+  WebhookReferralType,
+  WebhookStatusesType,
+  WebhookStickerType,
+  WebhookSubscribeQueryType,
+  WebhookSystemType,
+  WebhookTextType,
+  WebhookType,
+  WebhookValueType,
+  WebhookVideoType
+} from './types/webhooks.js';
 
 // typeCheckers
 export { isWebhookType } from './typesCheckers/webhooksCheckers.js';
+

@@ -236,7 +236,7 @@ export type MessageAddressBaseType = {
   phone_number?: string;
   state?: string;
   tower_number?: string;
-}
+};
 
 export type MessageAddressActionType = MessageAddressBaseType & {
   name: InteractiveTypesEnum.Address;
@@ -249,7 +249,15 @@ export type MessageAddressActionType = MessageAddressBaseType & {
     validation_errors?: MessageAddressBaseType;
     values?: MessageAddressBaseType;
   }
-}
+};
+
+export type MessageCTAButtonActionType = {
+  name: InteractiveTypesEnum.CallToAction;
+  parameters: {
+    display_text: string;
+    url: string;
+  }
+};
 
 export type MessageHeaderType = {
   type: 'document' | 'image' | 'text' | 'video';
@@ -273,6 +281,14 @@ export type ButtonInteractiveType = {
   footer?: MessageSimpleTextType;
   header?: MessageHeaderType;
   action: MessageActionType;
+};
+
+export type CallToActionInteractiveType = {
+  type: InteractiveTypesEnum.CallToAction;
+  body: MessageSimpleTextType;
+  footer?: MessageSimpleTextType;
+  header?: MessageHeaderType;
+  action: MessageCTAButtonActionType;
 };
 
 export type ListInteractiveType = {
@@ -300,7 +316,9 @@ export type ProductListInteractiveType = {
 };
 
 export type InteractiveMessageType =
+  | AddressInteractiveType
   | ButtonInteractiveType
+  | CallToActionInteractiveType
   | ListInteractiveType
   | ProductInteractiveType
   | ProductListInteractiveType;
