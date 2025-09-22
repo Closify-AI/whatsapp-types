@@ -259,6 +259,33 @@ export type MessageCTAButtonActionType = {
   }
 };
 
+export type NamedFlowParametersType = {
+  flow_id?: string;
+  flow_name: string;
+};
+
+export type UnnamedFlowParametersType = {
+  flow_id: string;
+  flow_name?: string;
+};
+
+export type MessageFlowActionType = {
+  name: InteractiveTypesEnum.Flow;
+  parameters: (NamedFlowParametersType | UnnamedFlowParametersType) & {
+    flow_message_version: 3;
+    flow_cta: string;
+    mode: 'draft' | 'published';
+    flow_token: string | 'unused';
+    flow_action: 'navigate' | 'data_exchange';
+    flow_action_payload?: {
+      screen: string | 'FIRST_ENTRY_SCREEN';
+      data?: {
+        [key: string]: string;
+      }
+    }
+  }
+};
+
 export type MessageHeaderType = {
   type: 'document' | 'image' | 'text' | 'video';
   document?: DocumentMediaMessageType;
@@ -291,6 +318,14 @@ export type CallToActionInteractiveType = {
   action: MessageCTAButtonActionType;
 };
 
+export type FlowInteractiveType = {
+  type: InteractiveTypesEnum.Flow;
+  body: MessageSimpleTextType;
+  footer?: MessageSimpleTextType;
+  header?: MessageHeaderType;
+  action: MessageFlowActionType;
+};
+
 export type ListInteractiveType = {
   type: InteractiveTypesEnum.List;
   body: MessageSimpleTextType;
@@ -319,6 +354,7 @@ export type InteractiveMessageType =
   | AddressInteractiveType
   | ButtonInteractiveType
   | CallToActionInteractiveType
+  | FlowInteractiveType
   | ListInteractiveType
   | ProductInteractiveType
   | ProductListInteractiveType;

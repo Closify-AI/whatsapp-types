@@ -58,6 +58,7 @@ export const enum InteractiveTypesEnum {
   Address = 'address_message',
   Button = 'button',
   CallToAction = 'cta_url',
+  Flow = 'flow',
   List = 'list',
   Product = 'product',
   ProductList = 'product_list',
