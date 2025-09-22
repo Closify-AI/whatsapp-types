@@ -77,7 +77,7 @@ export type AudioMediaType = MetaAudioMediaType | HostedAudioMediaType;
 
 export type AudioMessageRequestBodyType =
 	MessageRequestBodyType<MessageTypesEnum.Audio> & {
-		[MessageTypesEnum.Audio]: [AudioMediaType];
+		[MessageTypesEnum.Audio]: AudioMediaType;
 	};
 
 export type MessageAddressesType = {
@@ -156,7 +156,7 @@ export type DocumentMediaMessageType =
 
 export type DocumentMessageRequestBodyType =
 	MessageRequestBodyType<MessageTypesEnum.Document> & {
-		[MessageTypesEnum.Document]: [DocumentMediaMessageType];
+		[MessageTypesEnum.Document]: DocumentMediaMessageType;
 	};
 
 export type MetaImageMediaType = {
@@ -175,7 +175,7 @@ export type ImageMediaMessageType = MetaImageMediaType | HostedImageMediaType;
 
 export type ImageMessageRequestBodyType =
 	MessageRequestBodyType<MessageTypesEnum.Image> & {
-		[MessageTypesEnum.Image]: [ImageMediaMessageType];
+		[MessageTypesEnum.Image]: ImageMediaMessageType;
 	};
 
 export type MessageProductType = {
@@ -291,7 +291,7 @@ export type StickerMediaMessageType =
 
 export type StickerMessageRequestBodyType =
 	MessageRequestBodyType<MessageTypesEnum.Sticker> & {
-		[MessageTypesEnum.Sticker]: [StickerMediaMessageType];
+		[MessageTypesEnum.Sticker]: StickerMediaMessageType;
 	};
 
 export type ReactionMessageType = {
@@ -309,7 +309,7 @@ export type TextMessageType = {
 
 export type TextMessageRequestBodyType =
 	MessageRequestBodyType<MessageTypesEnum.Text> & {
-		[MessageTypesEnum.Text]: [TextMessageType];
+		[MessageTypesEnum.Text]: TextMessageType;
 	};
 
 export type MetaHostedVideoMediaType = {
@@ -330,7 +330,7 @@ export type VideoMediaMessageType =
 
 export type VideoMessageRequestBodyType =
 	MessageRequestBodyType<MessageTypesEnum.Video> & {
-		[MessageTypesEnum.Video]: [VideoMediaMessageType];
+		[MessageTypesEnum.Video]: VideoMediaMessageType;
 	};
 
 export type MessageLanguageType = {
@@ -423,7 +423,7 @@ export type LocationMessageType = {
 
 export type LocationMessageRequestBodyType =
 	MessageRequestBodyType<MessageTypesEnum.Location> & {
-		[MessageTypesEnum.Location]: [LocationMessageType];
+		[MessageTypesEnum.Location]: LocationMessageType;
 	};
 
 export type MessagesResponseType = GeneralMessageBodyType & {
