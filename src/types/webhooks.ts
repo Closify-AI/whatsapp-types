@@ -27,245 +27,259 @@ import { ServerResponse } from 'http';
 import type { IncomingHttpHeaders } from 'http';
 import type { WAConfigType } from './config.ts';
 import type {
-	ConversationTypesEnum,
-	CurrencyCodesEnum,
-	StatusEnum,
-	VideoMediaTypesEnum,
-	ReferralSourceTypesEnum,
-	StickerMediaTypesEnum,
-	WebhookTypesEnum,
-	SystemChangeTypesEnum,
-	ImageMediaTypesEnum,
-	DocumentMediaTypesEnum,
+  ConversationTypesEnum,
+  CurrencyCodesEnum,
+  StatusEnum,
+  VideoMediaTypesEnum,
+  ReferralSourceTypesEnum,
+  StickerMediaTypesEnum,
+  WebhookTypesEnum,
+  SystemChangeTypesEnum,
+  ImageMediaTypesEnum,
+  DocumentMediaTypesEnum,
 } from './enums.ts';
 import type { BaseClass } from './base.ts';
 
 export type WebhookPricingType = {
-	category: ConversationTypesEnum;
-	pricing_model: 'CBP';
+  category: ConversationTypesEnum;
+  pricing_model: 'CBP';
 };
 
 export type WebhookOriginType = {
-	type: ConversationTypesEnum;
+  type: ConversationTypesEnum;
 };
 
 export type WebhookConversationType = {
-	id: string;
-	origin: WebhookOriginType;
-	expiration_timestamp: string;
+  id: string;
+  origin: WebhookOriginType;
+  expiration_timestamp: string;
 };
 
 export type WebhookErrorDataType = {
-	details: string;
+  details: string;
 };
 
 export type WebhookErrorType = {
-	code: number;
-	title: string;
-	message: string;
-	error_data: WebhookErrorDataType;
+  code: number;
+  href?: string;
+  title: string;
+  message: string;
+  error_data: WebhookErrorDataType;
 };
 
 export type WebhookStatusesType = {
-	conversation: WebhookConversationType;
-	errors: WebhookErrorType[];
-	id: string;
-	pricing: WebhookPricingType;
-	recipient_id: string;
-	status: StatusEnum;
-	timestamp: string;
+  conversation: WebhookConversationType;
+  errors: WebhookErrorType[];
+  id: string;
+  message?: {
+    recipient_id: string;
+  };
+  pricing: WebhookPricingType;
+  recipient_id: string;
+  status: StatusEnum;
+  timestamp: string;
+  type: string;
 };
 
 export type WebhookAudioType = {
-	id: string;
-	mime_type: string;
+  id: string;
+  mime_type: string;
 };
 
 export type WebhookButtonType = {
-	payload: string;
-	text: string;
+  payload: string;
+  text: string;
 };
 
 export type WebhookContextType = {
-	forwarded: boolean;
-	frequently_forwarded: boolean;
-	from: string;
-	id: string;
-	referred_product: {
-		catalog_id: string;
-		product_retailer_id: string;
-	};
+  forwarded: boolean;
+  frequently_forwarded: boolean;
+  from: string;
+  id: string;
+  referred_product: {
+    catalog_id: string;
+    product_retailer_id: string;
+  };
 };
 
 export type WebhookDocumentType = {
-	caption: string;
-	filename: string;
-	sha256: string;
-	mime_type: DocumentMediaTypesEnum;
-	id: string;
+  caption: string;
+  filename: string;
+  sha256: string;
+  mime_type: DocumentMediaTypesEnum;
+  id: string;
 };
 
 export type WebhookIdentityType = {
-	acknowledged: string;
-	created_timestamp: string;
-	hash: string;
+  acknowledged: string;
+  created_timestamp: string;
+  hash: string;
 };
 
 export type WebhookImageType = {
-	caption: string;
-	sha256: string;
-	id: string;
-	mime_type: ImageMediaTypesEnum;
+  caption: string;
+  sha256: string;
+  id: string;
+  mime_type: ImageMediaTypesEnum;
 };
 
 export type WebhookButtonReplyType = {
-	button_reply: {
-		id: string;
-		title: string;
-	};
+  button_reply: {
+    id: string;
+    title: string;
+  };
 };
 
 export type WebhookListReplyType = {
-	list_reply: {
-		id: string;
-		title: string;
-		description: string;
-	};
+  list_reply: {
+    id: string;
+    title: string;
+    description: string;
+  };
 };
 
+export type WebhookNfmReplyType = {
+  type: 'nfm_reply';
+  nfm_reply: {
+    body: string;
+    name: string;
+    response_json: string;
+  };
+}
+
 export type WebhookInteractiveType = {
-	type: WebhookButtonReplyType | WebhookListReplyType;
+  type: WebhookButtonReplyType | WebhookListReplyType | WebhookNfmReplyType;
 };
 
 export type WebhookProductItemsType = {
-	product_retailer_id: string;
-	quantity: string;
-	item_price: string;
-	currency: CurrencyCodesEnum;
+  product_retailer_id: string;
+  quantity: string;
+  item_price: string;
+  currency: CurrencyCodesEnum;
 };
 
 export type WebhookOrderType = {
-	catalog_id: string;
-	text: string;
-	product_items: WebhookProductItemsType;
+  catalog_id: string;
+  text: string;
+  product_items: WebhookProductItemsType;
 };
 
 export type WebhookReferralType = {
-	source_url: URL;
-	source_type: ReferralSourceTypesEnum;
-	source_id: string;
-	headline: string;
-	body: string;
-	media_type: ImageMediaTypesEnum | VideoMediaTypesEnum;
-	image_url: URL;
-	video_url: URL;
-	thumbnail_url: URL;
+  source_url: URL;
+  source_type: ReferralSourceTypesEnum;
+  source_id: string;
+  headline: string;
+  body: string;
+  media_type: ImageMediaTypesEnum | VideoMediaTypesEnum;
+  image_url: URL;
+  video_url: URL;
+  thumbnail_url: URL;
 };
 
 export type WebhookStickerType = {
-	mime_type: StickerMediaTypesEnum;
-	sha256: string;
-	id: string;
-	animated: boolean;
+  mime_type: StickerMediaTypesEnum;
+  sha256: string;
+  id: string;
+  animated: boolean;
 };
 
 export type WebhookSystemType = {
-	body: string;
-	identity: string;
-	wa_id: string;
-	type: SystemChangeTypesEnum;
-	customer: string;
+  body: string;
+  identity: string;
+  wa_id: string;
+  type: SystemChangeTypesEnum;
+  customer: string;
 };
 
 export type WebhookTextType = {
-	body: string;
+  body: string;
 };
 
 export type WebhookVideoType = {
-	caption: string;
-	filename: string;
-	sha256: string;
-	id: string;
-	mime_type: VideoMediaTypesEnum;
+  caption: string;
+  filename: string;
+  sha256: string;
+  id: string;
+  mime_type: VideoMediaTypesEnum;
 };
 
 export type WebhookMessagesType = {
-	audio?: WebhookAudioType;
-	button?: WebhookButtonType;
-	context?: WebhookContextType;
-	document?: WebhookDocumentType;
-	errors: WebhookErrorType[];
-	from: string;
-	id: string;
-	identity?: WebhookIdentityType;
-	image?: WebhookImageType;
-	interactive?: WebhookInteractiveType;
-	order?: WebhookOrderType;
-	referral: WebhookReferralType;
-	system?: WebhookSystemType;
-	text?: WebhookTextType;
-	timestamp: string;
-	type: WebhookTypesEnum;
-	video?: WebhookVideoType;
+  audio?: WebhookAudioType;
+  button?: WebhookButtonType;
+  context?: WebhookContextType;
+  document?: WebhookDocumentType;
+  errors: WebhookErrorType[];
+  from: string;
+  id: string;
+  identity?: WebhookIdentityType;
+  image?: WebhookImageType;
+  interactive?: WebhookInteractiveType;
+  order?: WebhookOrderType;
+  referral: WebhookReferralType;
+  system?: WebhookSystemType;
+  text?: WebhookTextType;
+  timestamp: string;
+  type: WebhookTypesEnum;
+  video?: WebhookVideoType;
 };
 
 export type WebhookProfileType = {
-	name: string;
+  name: string;
 };
 
 export type WebhookContactType = {
-	wa_id: string;
-	profile: WebhookProfileType;
+  wa_id: string;
+  profile: WebhookProfileType;
 };
 
 export type WebhookMetadataType = {
-	display_phone_number: string;
-	phoneNumberId: string;
+  display_phone_number: string;
+  phoneNumberId: string;
 };
 
 export type WebhookValueType = {
-	messaging_product: 'whatsapp';
-	contacts: WebhookContactType[];
-	errors: WebhookErrorType[];
-	messages: WebhookMessagesType[];
-	metadata: WebhookMetadataType[];
-	statuses: WebhookStatusesType[];
+  messaging_product: 'whatsapp';
+  contacts: WebhookContactType[];
+  errors: WebhookErrorType[];
+  messages: WebhookMessagesType[];
+  metadata: WebhookMetadataType[];
+  statuses: WebhookStatusesType[];
 };
 
 export type WebhookChangesType = {
-	field: string;
-	value: WebhookValueType;
+  field: string;
+  value: WebhookValueType;
 };
 
 export type WebhookEntryType = {
-	id: string;
-	changes: WebhookChangesType[];
+  id: string;
+  changes: WebhookChangesType[];
 };
 
 export type WebhookType = {
-	object: 'whatsapp_business_account';
-	entry: WebhookEntryType[];
+  object: 'whatsapp_business_account';
+  entry: WebhookEntryType[];
 };
 
 export type WebhookSubscribeQueryType = {
-	hub: {
-		mode: 'subscribe';
-		challenge: string;
-		verify_token: string;
-	};
+  hub: {
+    mode: 'subscribe';
+    challenge: string;
+    verify_token: string;
+  };
 };
 
 export type WebhookCallbackType = (
-	statusCode: number,
-	headers: IncomingHttpHeaders,
-	body?: WebhookType,
-	response?: ServerResponse,
-	error?: Error,
+  statusCode: number,
+  headers: IncomingHttpHeaders,
+  body?: WebhookType,
+  response?: ServerResponse,
+  error?: Error,
 ) => any;
 
 export declare class WebhooksClass extends BaseClass {
-	constructor(config: WAConfigType, userAgent: string);
-	start(cb: WebhookCallbackType): boolean;
-	isStarted(): boolean;
-	stop(cb: (err?: Error) => any): boolean;
+  constructor(config: WAConfigType, userAgent: string);
+  start(cb: WebhookCallbackType): boolean;
+  isStarted(): boolean;
+  stop(cb: (err?: Error) => any): boolean;
 }

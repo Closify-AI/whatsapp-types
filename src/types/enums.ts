@@ -55,6 +55,7 @@ export const enum ParametersTypesEnum {
 }
 
 export const enum InteractiveTypesEnum {
+  Address = 'address_message',
 	Button = 'button',
 	List = 'list',
 	Product = 'product',
@@ -107,6 +108,7 @@ export const enum ConversationTypesEnum {
 
 export const enum StatusEnum {
 	Delivered = 'delivered',
+  Failed = 'failed',
 	Read = 'read',
 	Sent = 'sent',
 }
