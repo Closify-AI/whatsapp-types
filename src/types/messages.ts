@@ -201,7 +201,7 @@ export type MultiProductSectionType = {
 export type ListSectionType = {
   product_items?: never;
   rows: MessageRowType[];
-  title?: string;
+  title: string;
 };
 
 export type MessageSectionType = MultiProductSectionType | ListSectionType;
@@ -260,13 +260,13 @@ export type MessageCTAButtonActionType = {
 };
 
 export type NamedFlowParametersType = {
-  flow_id?: string;
+  flow_id?: never;
   flow_name: string;
 };
 
 export type UnnamedFlowParametersType = {
   flow_id: string;
-  flow_name?: string;
+  flow_name?: never;
 };
 
 export type MessageFlowActionType = {
@@ -285,6 +285,10 @@ export type MessageFlowActionType = {
     }
   }
 };
+
+export type LocationRequestActionType = {
+  name: "send_location";
+}
 
 export type MessageHeaderType = {
   type: 'document' | 'image' | 'text' | 'video';
@@ -333,6 +337,14 @@ export type ListInteractiveType = {
   header?: MessageHeaderType;
   action: MessageActionType;
 };
+
+export type LocationRequestInteractiveType = {
+  type: InteractiveTypesEnum.LocationRequest;
+  body: MessageSimpleTextType;
+  footer?: MessageSimpleTextType;
+  header?: MessageHeaderType;
+  action: LocationRequestActionType;
+}
 
 export type ProductInteractiveType = {
   type: InteractiveTypesEnum.Product;

@@ -60,6 +60,7 @@ export const enum InteractiveTypesEnum {
   CallToAction = 'cta_url',
   Flow = 'flow',
   List = 'list',
+  LocationRequest = 'location_request_message',
   Product = 'product',
   ProductList = 'product_list',
 }
