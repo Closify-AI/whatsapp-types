@@ -401,7 +401,9 @@ export type ReactionMessageType = {
 };
 
 export type ReactionMessageRequestBodyType =
-  MessageRequestBodyType<MessageTypesEnum.Reaction> & ReactionMessageType;
+  MessageRequestBodyType<MessageTypesEnum.Reaction> & {
+    [MessageTypesEnum.Reaction]: ReactionMessageType;
+  }
 
 export type TextMessageType = {
   body: string;
