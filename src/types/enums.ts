@@ -180,6 +180,16 @@ export const enum TemplateIndustryEnum {
   Hospitality = 'HOSPITALITY',
 }
 
+export const enum TemplateLibraryParameterEnum {
+  Address = 'ADDRESS',
+  Amount = 'AMOUNT',
+  Date = 'DATE',
+  Email = 'EMAIL',
+  Number = 'NUMBER',
+  PhoneNumber = 'PHONE_NUMBER',
+  Text = 'TEXT',
+}
+
 export const enum TemplateTopicEnum {
   AccountUpdate = 'ACCOUNT_UPDATE',
   CustomerFeedback = 'CUSTOMER_FEEDBACK',

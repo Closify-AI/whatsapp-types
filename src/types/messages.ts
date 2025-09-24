@@ -640,6 +640,65 @@ export type TextTemplateRequestBodyType =
   { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, CurrencyParametersType>, never> } &
   { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, DateTimeParametersType>, never> };
 
+/**
+ * Template library
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates/template-library
+ */
+export type TemplateLibraryButtonType = {
+  type: string;
+  text: string;
+  url?: string;
+  phone_number?: string;
+}
+
+export type TemplateLibraryURLButtonInputType = {
+  type: 'URL';
+  url: {
+    base_url: URL;
+    url_suffix_example: URL;
+  }
+}
+
+export type TemplateLibraryPhoneNumberButtonInputType = {
+  type: 'PHONE_NUMBER';
+  phone_number: string;
+}
+
+export type TemplateLibraryCreateRequestBodyType = {
+  name: string;
+  category: 'UTILITY';
+  language: LanguagesEnum;
+  library_template_name: string;
+  library_template_button_inputs: (TemplateLibraryURLButtonInputType | TemplateLibraryPhoneNumberButtonInputType)[];
+}
+
+export type TemplateLibraryCreateResponseBodyType = {
+  id: string;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED' | 'DELETED';
+  category: 'UTILITY';
+}
+
+export type TemplateLibraryQueryRequestBodyType = {
+  search_key?: string;
+  industry?: TemplateIndustryEnum;
+  language?: LanguagesEnum;
+  topic?: TemplateTopicEnum;
+  usecase?: TemplateUseCaseEnum;
+}
+
+export type TemplateLibraryResponseBodyType = {
+  name: string;
+  language: LanguagesEnum;
+  category: string;
+  topic: TemplateTopicEnum;
+  usecase: TemplateUseCaseEnum;
+  industry: TemplateIndustryEnum[];
+  header: string;
+  body: string;
+  body_params?: string[];
+  buttons?: TemplateLibraryButtonType[];
+  id: string;
+}
 
 export type MessagesResponseType = GeneralMessageBodyType & {
   contacts: [
