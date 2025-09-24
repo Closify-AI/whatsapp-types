@@ -174,6 +174,47 @@ export const enum ReferralSourceTypesEnum {
   Post = 'post',
 }
 
+export const enum TemplateIndustryEnum {
+  ECommerce = 'ECOMMERCE',
+  FinancialServices = 'FINANCIAL_SERVICES',
+  Hospitality = 'HOSPITALITY',
+}
+
+export const enum TemplateTopicEnum {
+  AccountUpdate = 'ACCOUNT_UPDATE',
+  CustomerFeedback = 'CUSTOMER_FEEDBACK',
+  OrderManagement = 'ORDER_MANAGEMENT',
+  Payments = 'PAYMENTS',
+}
+
+export const enum TemplateUseCaseEnum {
+  AccountCreationInformation = 'ACCOUNT_CREATION_INFORMATION',
+  AutoPayReminder = 'AUTO_PAY_REMINDER',
+  DeliveryConfirmation = 'DELIVERY_CONFIRMATION',
+  DeliveryFailed = 'DELIVERY_FAILED',
+  DeliveryUpdate = 'DELIVERY_UPDATE',
+  FeedbackSurvey = 'FEEDBACK_SURVEY',
+  FraudAlert = 'FRAUD_ALERT',
+  LowBalanceWarning = 'LOW_BALANCE_WARNING',
+  OrderActionNeeded = 'ORDER_ACTION_NEEDED',
+  OrderConfirmation = 'ORDER_CONFIRMATION',
+  OrderDelay = 'ORDER_DELAY',
+  OrderOrTransactionCancel = 'ORDER_OR_TRANSACTION_CANCEL',
+  OrderPickUp = 'ORDER_PICK_UP',
+  PaymentActionRequired = 'PAYMENT_ACTION_REQUIRED',
+  PaymentConfirmation = 'PAYMENT_CONFIRMATION',
+  PaymentDueReminder = 'PAYMENT_DUE_REMINDER',
+  PaymentOverdue = 'PAYMENT_OVERDUE',
+  PaymentRejectFail = 'PAYMENT_REJECT_FAIL',
+  PaymentScheduled = 'PAYMENT_SCHEDULED',
+  ReceiptAtttachment = 'RECEIPT_ATTACHMENT',
+  ReturnConfirmation = 'RETURN_CONFIRMATION',
+  ShipmentConfirmation = 'SHIPMENT_CONFIRMATION',
+  StatementAttachment = 'STATEMENT_ATTACHMENT',
+  StatementAvailable = 'STATEMENT_AVAILABLE',
+  TransactionAlert = 'TRANSACTION_ALERT',
+}
+
 export const enum LanguagesEnum {
   Afrikaans = 'af',
   Albanian = 'sq',

@@ -25,14 +25,17 @@
 
 import type { BaseClass } from './base.ts';
 import type {
-  MessageTypesEnum,
-  ComponentTypesEnum,
-  LanguagesEnum,
-  ParametersTypesEnum,
-  CurrencyCodesEnum,
-  ButtonTypesEnum,
   ButtonPositionEnum,
+  ButtonTypesEnum,
+  ComponentTypesEnum,
+  CurrencyCodesEnum,
   InteractiveTypesEnum,
+  LanguagesEnum,
+  MessageTypesEnum,
+  ParametersTypesEnum,
+  TemplateIndustryEnum,
+  TemplateTopicEnum,
+  TemplateUseCaseEnum,
 } from './enums.ts';
 import type { GeneralRequestBodyType, RequesterResponseInterface } from './requester.ts';
 
@@ -483,6 +486,7 @@ export type MessageLanguageType = {
  * Template messages
  * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates
  */
+
 export type TextNamedParametersType = {
   type: ParametersTypesEnum.Text;
   parameter_name: string;
@@ -493,10 +497,6 @@ export type TextPositionalParametersType = {
   type: ParametersTypesEnum.Text;
   text: string;
 };
-
-export type TextParametersType =
-  | TextNamedParametersType
-  | TextPositionalParametersType;
 
 export type MessageCurrencyType = {
   fallback_value: string;
@@ -533,20 +533,6 @@ export type VideoParametersType =
     type: ParametersTypesEnum.Video;
   };
 
-export type QuickReplyButtonParametersType = {
-  type: ParametersTypesEnum.Payload;
-  payload: string;
-};
-
-export type URLButtonParametersType = {
-  type: ParametersTypesEnum.Text;
-  text: string;
-};
-
-export type ButtonParameterType =
-  | QuickReplyButtonParametersType
-  | URLButtonParametersType;
-
 export type LocationMessageType = {
   longitude: number;
   latitude: number;
@@ -559,45 +545,101 @@ export type LocationParametersType = {
   location: LocationMessageType;
 }
 
-export type MessageComponentType<T extends ComponentTypesEnum> = {
-  type: T;
-  parameters: (
-    | CurrencyParametersType
-    | DateTimeParametersType
-    | DocumentParametersType
-    | ImageParametersType
-    | LocationParametersType
-    | TextParametersType
-    | VideoParametersType
-  )[];
+type ParametersType =
+  | CurrencyParametersType
+  | DateTimeParametersType
+  | DocumentParametersType
+  | ImageParametersType
+  | LocationParametersType
+  | TextNamedParametersType
+  | TextPositionalParametersType
+  | VideoParametersType;
+
+export type QuickReplyButtonParametersType = {
+  type: ParametersTypesEnum.Payload;
+  payload: string;
 };
 
-export type ButtonComponentType = MessageComponentType<ComponentTypesEnum.Button> & {
-  parameters: ButtonParameterType;
+export type URLButtonParametersType = {
+  type: ParametersTypesEnum.Text;
+  text: string;
+};
+
+type ButtonParametersType =
+  | QuickReplyButtonParametersType
+  | URLButtonParametersType;
+
+export type MessageComponentType<T extends ComponentTypesEnum, U extends ParametersType> = {
+  type: T;
+  parameters: (U)[];
+};
+
+export type ButtonComponentType<T extends ButtonParametersType> = {
+  type: ComponentTypesEnum.Button;
+  parameters: (T)[];
   sub_type: ButtonTypesEnum;
   index: ButtonPositionEnum;
 };
 
-export type MessageTemplateType<T extends ComponentTypesEnum> = {
+export type TemplateMessageType<T extends MessageComponentType<ComponentTypesEnum, ParametersType>, U extends ButtonComponentType<ButtonParametersType>> = {
   name: string;
   language: MessageLanguageType;
-  components?: (MessageComponentType<T> | ButtonComponentType)[];
+  components?: (T | U)[];
 };
 
-export type MessageTemplateRequestBodyType<T extends ComponentTypesEnum> =
-  MessageRequestBodyType<MessageTypesEnum.Template> & MessageTemplateType<T>;
+/**
+ * Authentication template messages
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates/auth-otp-template-messages
+ */
+export type AuthenticationTemplateRequestBodyType =
+  MessageRequestBodyType<MessageTypesEnum.Template> &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<never, ButtonComponentType<URLButtonParametersType>> };
 
-export type LocationMessageType = {
-  longitude: number;
-  latitude: number;
-  name?: string;
-  address?: string;
-};
+/**
+ * Interactive template messages
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates#interactive
+ */
+export type InteractiveTemplateRequestBodyType =
+  MessageRequestBodyType<MessageTypesEnum.Template> &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Header, ImageParametersType | DocumentParametersType | VideoParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, CurrencyParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, DateTimeParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<never, ButtonComponentType<QuickReplyButtonParametersType>> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<never, ButtonComponentType<QuickReplyButtonParametersType>> };
 
-export type LocationMessageRequestBodyType =
-  MessageRequestBodyType<MessageTypesEnum.Location> & {
-    [MessageTypesEnum.Location]: LocationMessageType;
-  };
+/**
+ * Location-based template messages
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates#location
+ */
+export type LocationTemplateRequestBodyType =
+  MessageRequestBodyType<MessageTypesEnum.Template> &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Header, LocationParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> };
+
+/**
+ * Media-based template messages
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates#media-based
+ */
+export type MediaTemplateRequestBodyType =
+  MessageRequestBodyType<MessageTypesEnum.Template> &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Header, ImageParametersType | DocumentParametersType | VideoParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, CurrencyParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, DateTimeParametersType>, never> };
+
+/**
+ * Text-only template messages
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates#text-based
+ */
+export type TextTemplateRequestBodyType =
+  MessageRequestBodyType<MessageTypesEnum.Template> &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, CurrencyParametersType>, never> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, DateTimeParametersType>, never> };
+
 
 export type MessagesResponseType = GeneralMessageBodyType & {
   contacts: [
@@ -653,7 +695,10 @@ export declare class MessagesClass extends BaseClass {
     replyMessageId?: string,
   ): Promise<RequesterResponseInterface<MessagesResponseType>>;
   template(
-    body: MessageTemplateType<ComponentTypesEnum>,
+    body:
+      TemplateMessageType<MessageComponentType<ComponentTypesEnum, ParametersType>, ButtonComponentType<ButtonParametersType>> |
+      TemplateMessageType<MessageComponentType<ComponentTypesEnum, ParametersType>, never> |
+      TemplateMessageType<never, ButtonComponentType<ButtonParametersType>>,
     recipient: number,
     replyMessageId?: string,
   ): Promise<RequesterResponseInterface<MessagesResponseType>>;
