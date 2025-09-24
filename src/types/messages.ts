@@ -441,12 +441,24 @@ export type MessageLanguageType = {
   code: LanguagesEnum;
 };
 
-export type MessageParametersType<T extends ParametersTypesEnum> = {
-  type: T;
+/**
+ * Template messages
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates
+ */
+export type TextNamedParametersType = {
+  type: ParametersTypesEnum.Text;
+  parameter_name: string;
+  text: string;
 };
 
-export type TextParametersType = MessageParametersType<ParametersTypesEnum.Text> &
-  MessageSimpleTextType;
+export type TextPositionalParametersType = {
+  type: ParametersTypesEnum.Text;
+  text: string;
+};
+
+export type TextParametersType =
+  | TextNamedParametersType
+  | TextPositionalParametersType;
 
 export type MessageCurrencyType = {
   fallback_value: string;
@@ -454,36 +466,43 @@ export type MessageCurrencyType = {
   amount_1000: number;
 };
 
-export type CurrencyParametersType =
-  MessageParametersType<ParametersTypesEnum.Currency> & {
-    currency: MessageCurrencyType;
-  };
+export type CurrencyParametersType = {
+  type: ParametersTypesEnum.Currency;
+  currency: MessageCurrencyType;
+};
 
 export type MessageDateTimeType = {
   fallback_value: string;
 };
 
-export type DateTimeParametersType =
-  MessageParametersType<ParametersTypesEnum.Currency> & {
-    date_time: MessageCurrencyType;
+export type DateTimeParametersType = {
+  type: ParametersTypesEnum.DateTime;
+  date_time: MessageDateTimeType
+};
+
+export type DocumentParametersType =
+  DocumentMediaMessageType & {
+    type: ParametersTypesEnum.Document;
   };
 
-export type DocumentParametersType = MessageParametersType<ParametersTypesEnum.Document> &
-  DocumentMediaMessageType;
+export type ImageParametersType =
+  ImageMediaMessageType & {
+    type: ParametersTypesEnum.Image;
+  };
 
-export type ImageParametersType = MessageParametersType<ParametersTypesEnum.Image> &
-  ImageMediaMessageType;
-
-export type VideoParametersType = MessageParametersType<ParametersTypesEnum.Video> &
-  VideoMediaMessageType;
+export type VideoParametersType =
+  VideoMediaMessageType & {
+    type: ParametersTypesEnum.Video;
+  };
 
 export type QuickReplyButtonParametersType = {
   type: ParametersTypesEnum.Payload;
   payload: string;
 };
 
-export type URLButtonParametersType = MessageSimpleTextType & {
+export type URLButtonParametersType = {
   type: ParametersTypesEnum.Text;
+  text: string;
 };
 
 export type ButtonParameterType =
