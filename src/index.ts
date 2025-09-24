@@ -101,6 +101,7 @@ export type {
   ListSectionType,
   LocationMessageRequestBodyType,
   LocationMessageType,
+  LocationParametersType,
   LocationRequestActionType,
   LocationRequestInteractiveType,
   MessageActionType,

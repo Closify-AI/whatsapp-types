@@ -178,6 +178,11 @@ export type ImageMessageRequestBodyType =
     [MessageTypesEnum.Image]: ImageMediaMessageType;
   };
 
+/**
+ * Interactive messages
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages#interactive-messages
+ */
+
 export type MessageProductType = {
   product_retailer_id: string;
 };
@@ -298,6 +303,10 @@ export type MessageHeaderType = {
   video?: VideoMediaMessageType;
 };
 
+/**
+ * Interactive address message
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/messages/address-messages
+ */
 export type AddressInteractiveType = {
   type: InteractiveTypesEnum.Address;
   body: MessageSimpleTextType;
@@ -306,6 +315,10 @@ export type AddressInteractiveType = {
   action: MessageAddressActionType;
 };
 
+/**
+ * Interactive reply buttons message
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/messages/interactive-reply-buttons-messages
+ */
 export type ButtonInteractiveType = {
   type: InteractiveTypesEnum.Button;
   body: MessageSimpleTextType;
@@ -314,6 +327,10 @@ export type ButtonInteractiveType = {
   action: MessageActionType;
 };
 
+/**
+ * Interactive call-to-action URL message
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/messages/interactive-cta-url-messages
+ */
 export type CallToActionInteractiveType = {
   type: InteractiveTypesEnum.CallToAction;
   body: MessageSimpleTextType;
@@ -322,6 +339,10 @@ export type CallToActionInteractiveType = {
   action: MessageCTAButtonActionType;
 };
 
+/**
+ * Interactive flow message
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/messages/interactive-flow-messages
+ */
 export type FlowInteractiveType = {
   type: InteractiveTypesEnum.Flow;
   body: MessageSimpleTextType;
@@ -330,6 +351,10 @@ export type FlowInteractiveType = {
   action: MessageFlowActionType;
 };
 
+/**
+ * Interactive list message
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/messages/interactive-list-messages
+ */
 export type ListInteractiveType = {
   type: InteractiveTypesEnum.List;
   body: MessageSimpleTextType;
@@ -338,6 +363,10 @@ export type ListInteractiveType = {
   action: MessageActionType;
 };
 
+/**
+ * Interactive location request message
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages/location-request-messages
+ */
 export type LocationRequestInteractiveType = {
   type: InteractiveTypesEnum.LocationRequest;
   body: MessageSimpleTextType;
@@ -346,6 +375,10 @@ export type LocationRequestInteractiveType = {
   action: LocationRequestActionType;
 }
 
+/**
+ * Interactive product message
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/sell-products-and-services/share-products
+ */
 export type ProductInteractiveType = {
   type: InteractiveTypesEnum.Product;
   body?: MessageSimpleTextType;
@@ -354,6 +387,10 @@ export type ProductInteractiveType = {
   action: MessageActionType;
 };
 
+/**
+ * Interactive product list message
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/sell-products-and-services/share-products
+ */
 export type ProductListInteractiveType = {
   type: InteractiveTypesEnum.ProductList;
   body: MessageSimpleTextType;
@@ -368,6 +405,7 @@ export type InteractiveMessageType =
   | CallToActionInteractiveType
   | FlowInteractiveType
   | ListInteractiveType
+  | LocationRequestInteractiveType
   | ProductInteractiveType
   | ProductListInteractiveType;
 
@@ -509,6 +547,18 @@ export type ButtonParameterType =
   | QuickReplyButtonParametersType
   | URLButtonParametersType;
 
+export type LocationMessageType = {
+  longitude: number;
+  latitude: number;
+  name?: string;
+  address?: string;
+};
+
+export type LocationParametersType = {
+  type: ParametersTypesEnum.Location;
+  location: LocationMessageType;
+}
+
 export type MessageComponentType<T extends ComponentTypesEnum> = {
   type: T;
   parameters: (
@@ -516,6 +566,7 @@ export type MessageComponentType<T extends ComponentTypesEnum> = {
     | DateTimeParametersType
     | DocumentParametersType
     | ImageParametersType
+    | LocationParametersType
     | TextParametersType
     | VideoParametersType
   )[];

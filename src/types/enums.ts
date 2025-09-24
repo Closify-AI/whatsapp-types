@@ -49,6 +49,7 @@ export const enum ParametersTypesEnum {
   DateTime = 'date_time',
   Document = 'document',
   Image = 'image',
+  Location = 'location',
   Text = 'text',
   Video = 'video',
   Payload = 'payload',
