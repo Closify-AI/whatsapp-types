@@ -567,6 +567,7 @@ type ParametersType =
   | ImageParametersType
   | LimitedTimeOfferParametersType
   | LocationParametersType
+  | TapTargetParametersType
   | TextNamedParametersType
   | TextPositionalParametersType
   | VideoParametersType;
@@ -611,11 +612,6 @@ export type ButtonComponentType<T extends ButtonParametersType> = {
   index: ButtonPositionEnum;
 };
 
-export type TapTargetComponentType = {
-  type: ComponentTypesEnum.TapTarget;
-  parameters: [TapTargetParametersType];
-}
-
 export type TemplateMessageType<T extends ComponentTypesEnum, U extends ParametersType> = {
   name: string;
   language: MessageLanguageType;
@@ -627,12 +623,6 @@ export type TemplateButtonMessageType<T extends ButtonParametersType> = {
   language: MessageLanguageType;
   components: (ButtonComponentType<T>)[];
 };
-
-export type TemplateTapTargetMessageType = {
-  name: string;
-  language: MessageLanguageType;
-  components: [TapTargetComponentType];
-}
 
 /**
  * Authentication template messages
@@ -685,7 +675,7 @@ export type TapTargetTemplateRequestBodyType =
   MessageRequestBodyType<MessageTypesEnum.Template> &
   { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Header, ImageParametersType | DocumentParametersType | VideoParametersType> } &
   { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, TextPositionalParametersType> } &
-  { [MessageTypesEnum.Template]: TemplateTapTargetMessageType };
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.TapTarget, TapTargetParametersType> };
 
 /**
  * Text-only template messages
@@ -813,8 +803,7 @@ export declare class MessagesClass extends BaseClass {
   template(
     body:
       TemplateMessageType<ComponentTypesEnum, ParametersType> |
-      TemplateButtonMessageType<ButtonParametersType> |
-      TemplateTapTargetMessageType,
+      TemplateButtonMessageType<ButtonParametersType>,
     recipient: number,
     replyMessageId?: string,
   ): Promise<RequesterResponseInterface<MessagesResponseType>>;
