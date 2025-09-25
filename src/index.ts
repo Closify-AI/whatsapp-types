@@ -80,6 +80,7 @@ export type {
   ButtonComponentType,
   ButtonInteractiveType,
   CallToActionInteractiveType,
+  CatalogButtonParametersType,
   ContactMessageType,
   ContactsMessageRequestBodyType,
   CurrencyParametersType,

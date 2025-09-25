@@ -563,6 +563,13 @@ type ParametersType =
   | TextPositionalParametersType
   | VideoParametersType;
 
+export type CatalogButtonParametersType = {
+  type: ParametersTypesEnum.Action;
+  action?: {
+    thumbnail_product_retailer_id: string;
+  }
+}
+
 export type QuickReplyButtonParametersType = {
   type: ParametersTypesEnum.Payload;
   payload: string;
@@ -574,6 +581,7 @@ export type URLButtonParametersType = {
 };
 
 type ButtonParametersType =
+  | CatalogButtonParametersType
   | QuickReplyButtonParametersType
   | URLButtonParametersType;
 
