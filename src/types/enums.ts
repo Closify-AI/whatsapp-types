@@ -86,6 +86,7 @@ export const enum ButtonPositionEnum {
 export const enum ComponentTypesEnum {
   Body = 'body',
   Button = 'button',
+  Carousel = 'carousel',
   Header = 'header',
   LimitedTimeOffer = 'limited_time_offer',
   TapTarget = 'tap_target_configuration',

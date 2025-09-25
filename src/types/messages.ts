@@ -504,6 +504,16 @@ export type MessageCurrencyType = {
   amount_1000: number;
 };
 
+export type CarouselParametersType = {
+  type: 'image' | 'video';
+  image?: {
+    id: string;
+  };
+  video?: {
+    id: string;
+  };
+};
+
 export type CurrencyParametersType = {
   type: ParameterTypesEnum.Currency;
   currency: MessageCurrencyType;
@@ -561,6 +571,7 @@ export type TapTargetParametersType = {
 }
 
 type ParametersType =
+  | CarouselParametersType
   | CurrencyParametersType
   | DateTimeParametersType
   | DocumentParametersType
@@ -612,6 +623,19 @@ export type ButtonComponentType<T extends ButtonParametersType> = {
   index: ButtonPositionEnum;
 };
 
+type CarouselSubComponentType = 
+  | MessageComponentType<ComponentTypesEnum.Header, CarouselParametersType>
+  | MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>
+  | ButtonComponentType<QuickReplyButtonParametersType | URLButtonParametersType>;
+
+export type CarouselComponentType<T extends CarouselSubComponentType> = {
+  type: ComponentTypesEnum.Carousel;
+  cards: {
+    card_index: number;
+    components: (T)[];
+  }
+}
+
 export type TemplateMessageType<T extends ComponentTypesEnum, U extends ParametersType> = {
   name: string;
   language: MessageLanguageType;
@@ -623,6 +647,12 @@ export type TemplateButtonMessageType<T extends ButtonParametersType> = {
   language: MessageLanguageType;
   components: (ButtonComponentType<T>)[];
 };
+
+export type TemplateCarouselMessageType<T extends CarouselSubComponentType> = {
+  name: string;
+  language: MessageLanguageType;
+  components: (MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType> | CarouselComponentType<T>)[];
+}
 
 /**
  * Authentication template messages
@@ -802,8 +832,9 @@ export declare class MessagesClass extends BaseClass {
   ): Promise<RequesterResponseInterface<MessagesResponseType>>;
   template(
     body:
-      TemplateMessageType<ComponentTypesEnum, ParametersType> |
-      TemplateButtonMessageType<ButtonParametersType>,
+      | TemplateMessageType<ComponentTypesEnum, ParametersType>
+      | TemplateButtonMessageType<ButtonParametersType>
+      | TemplateCarouselMessageType<CarouselSubComponentType>,
     recipient: number,
     replyMessageId?: string,
   ): Promise<RequesterResponseInterface<MessagesResponseType>>;
