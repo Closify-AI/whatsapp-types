@@ -51,6 +51,7 @@ export const enum ParametersTypesEnum {
   DateTime = 'date_time',
   Document = 'document',
   Image = 'image',
+  LimitedTimeOffer = 'limited_time_offer',
   Location = 'location',
   Payload = 'payload',
   TapTarget = 'tap_target_configuration',
@@ -86,6 +87,7 @@ export const enum ComponentTypesEnum {
   Body = 'body',
   Button = 'button',
   Header = 'header',
+  LimitedTimeOffer = 'limited_time_offer',
   TapTarget = 'tap_target_configuration',
 }
 

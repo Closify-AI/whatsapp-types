@@ -533,6 +533,13 @@ export type VideoParametersType =
     type: ParametersTypesEnum.Video;
   };
 
+export type LimitedTimeOfferParametersType = {
+  type: ParametersTypesEnum.LimitedTimeOffer;
+  limited_time_offer: {
+    expiration_time_ms: number;
+  }
+}
+
 export type LocationMessageType = {
   longitude: number;
   latitude: number;
@@ -558,6 +565,7 @@ type ParametersType =
   | DateTimeParametersType
   | DocumentParametersType
   | ImageParametersType
+  | LimitedTimeOfferParametersType
   | LocationParametersType
   | TextNamedParametersType
   | TextPositionalParametersType

@@ -101,6 +101,7 @@ export type {
   InteractiveMessageRequestBodyType,
   InteractiveMessageType,
   InteractiveTemplateRequestBodyType,
+  LimitedTimeOfferParametersType,
   ListInteractiveType,
   ListSectionType,
   LocationMessageType,
