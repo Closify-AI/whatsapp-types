@@ -46,6 +46,7 @@ export const enum MessageTypesEnum {
 
 export const enum ParametersTypesEnum {
   Action = 'action',
+  CouponCode = 'coupon_code',
   Currency = 'currency',
   DateTime = 'date_time',
   Document = 'document',
@@ -70,6 +71,7 @@ export const enum InteractiveTypesEnum {
 
 export const enum ButtonTypesEnum {
   Catalog = 'catalog',
+  CopyCode = 'copy_code',
   QuickReply = 'quick_reply',
   URL = 'url',
 }

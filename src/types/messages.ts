@@ -568,7 +568,12 @@ export type CatalogButtonParametersType = {
   action?: {
     thumbnail_product_retailer_id: string;
   }
-}
+};
+
+export type CouponButtonParametersType = {
+  type: ParametersTypesEnum.CouponCode;
+  coupon_code: string;
+};
 
 export type QuickReplyButtonParametersType = {
   type: ParametersTypesEnum.Payload;
@@ -582,6 +587,7 @@ export type URLButtonParametersType = {
 
 type ButtonParametersType =
   | CatalogButtonParametersType
+  | CouponButtonParametersType
   | QuickReplyButtonParametersType
   | URLButtonParametersType;
 

@@ -83,6 +83,7 @@ export type {
   CatalogButtonParametersType,
   ContactMessageType,
   ContactsMessageRequestBodyType,
+  CouponButtonParametersType,
   CurrencyParametersType,
   DateTimeParametersType,
   DocumentMediaMessageType,
