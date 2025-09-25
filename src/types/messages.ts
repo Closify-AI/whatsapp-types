@@ -545,6 +545,14 @@ export type LocationParametersType = {
   location: LocationMessageType;
 }
 
+export type TapTargetParametersType = {
+  type: ParametersTypesEnum.TapTarget;
+  tap_target_configuration: {
+    url: URL;
+    title: string;
+  }
+}
+
 type ParametersType =
   | CurrencyParametersType
   | DateTimeParametersType
@@ -581,11 +589,28 @@ export type ButtonComponentType<T extends ButtonParametersType> = {
   index: ButtonPositionEnum;
 };
 
-export type TemplateMessageType<T extends MessageComponentType<ComponentTypesEnum, ParametersType>, U extends ButtonComponentType<ButtonParametersType>> = {
+export type TapTargetComponentType = {
+  type: ComponentTypesEnum.TapTarget;
+  parameters: [TapTargetParametersType];
+}
+
+export type TemplateMessageType<T extends ComponentTypesEnum, U extends ParametersType> = {
   name: string;
   language: MessageLanguageType;
-  components?: (T | U)[];
+  components?: (MessageComponentType<T, U>)[];
 };
+
+export type TemplateButtonMessageType<T extends ButtonParametersType> = {
+  name: string;
+  language: MessageLanguageType;
+  components: (ButtonComponentType<T>)[];
+};
+
+export type TemplateTapTargetMessageType = {
+  name: string;
+  language: MessageLanguageType;
+  components: [TapTargetComponentType];
+}
 
 /**
  * Authentication template messages
@@ -593,8 +618,8 @@ export type TemplateMessageType<T extends MessageComponentType<ComponentTypesEnu
  */
 export type AuthenticationTemplateRequestBodyType =
   MessageRequestBodyType<MessageTypesEnum.Template> &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<never, ButtonComponentType<URLButtonParametersType>> };
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, TextPositionalParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateButtonMessageType<URLButtonParametersType> };
 
 /**
  * Interactive template messages
@@ -602,12 +627,12 @@ export type AuthenticationTemplateRequestBodyType =
  */
 export type InteractiveTemplateRequestBodyType =
   MessageRequestBodyType<MessageTypesEnum.Template> &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Header, ImageParametersType | DocumentParametersType | VideoParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, CurrencyParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, DateTimeParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<never, ButtonComponentType<QuickReplyButtonParametersType>> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<never, ButtonComponentType<QuickReplyButtonParametersType>> };
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Header, ImageParametersType | DocumentParametersType | VideoParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, TextPositionalParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, CurrencyParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, DateTimeParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateButtonMessageType<QuickReplyButtonParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateButtonMessageType<QuickReplyButtonParametersType> };
 
 /**
  * Location-based template messages
@@ -615,9 +640,9 @@ export type InteractiveTemplateRequestBodyType =
  */
 export type LocationTemplateRequestBodyType =
   MessageRequestBodyType<MessageTypesEnum.Template> &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Header, LocationParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> };
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Header, LocationParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, TextPositionalParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, TextPositionalParametersType> };
 
 /**
  * Media-based template messages
@@ -625,10 +650,20 @@ export type LocationTemplateRequestBodyType =
  */
 export type MediaTemplateRequestBodyType =
   MessageRequestBodyType<MessageTypesEnum.Template> &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Header, ImageParametersType | DocumentParametersType | VideoParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, CurrencyParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, DateTimeParametersType>, never> };
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Header, ImageParametersType | DocumentParametersType | VideoParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, TextPositionalParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, CurrencyParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, DateTimeParametersType> };
+
+/**
+ * Tap target template messages
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates/tap-target-url-title-override
+ */
+export type TapTargetTemplateRequestBodyType =
+  MessageRequestBodyType<MessageTypesEnum.Template> &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Header, ImageParametersType | DocumentParametersType | VideoParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, TextPositionalParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateTapTargetMessageType };
 
 /**
  * Text-only template messages
@@ -636,9 +671,9 @@ export type MediaTemplateRequestBodyType =
  */
 export type TextTemplateRequestBodyType =
   MessageRequestBodyType<MessageTypesEnum.Template> &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, CurrencyParametersType>, never> } &
-  { [MessageTypesEnum.Template]: TemplateMessageType<MessageComponentType<ComponentTypesEnum.Body, DateTimeParametersType>, never> };
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, TextPositionalParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, CurrencyParametersType> } &
+  { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, DateTimeParametersType> };
 
 /**
  * Template library
@@ -755,9 +790,9 @@ export declare class MessagesClass extends BaseClass {
   ): Promise<RequesterResponseInterface<MessagesResponseType>>;
   template(
     body:
-      TemplateMessageType<MessageComponentType<ComponentTypesEnum, ParametersType>, ButtonComponentType<ButtonParametersType>> |
-      TemplateMessageType<MessageComponentType<ComponentTypesEnum, ParametersType>, never> |
-      TemplateMessageType<never, ButtonComponentType<ButtonParametersType>>,
+      TemplateMessageType<ComponentTypesEnum, ParametersType> |
+      TemplateButtonMessageType<ButtonParametersType> |
+      TemplateTapTargetMessageType,
     recipient: number,
     replyMessageId?: string,
   ): Promise<RequesterResponseInterface<MessagesResponseType>>;

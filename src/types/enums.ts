@@ -50,9 +50,10 @@ export const enum ParametersTypesEnum {
   Document = 'document',
   Image = 'image',
   Location = 'location',
+  Payload = 'payload',
+  TapTarget = 'tap_target_configuration',
   Text = 'text',
   Video = 'video',
-  Payload = 'payload',
 }
 
 export const enum InteractiveTypesEnum {
@@ -78,9 +79,10 @@ export const enum ButtonPositionEnum {
 }
 
 export const enum ComponentTypesEnum {
-  Header = 'header',
   Body = 'body',
   Button = 'button',
+  Header = 'header',
+  TapTarget = 'tap_target_configuration',
 }
 
 export enum WAConfigEnum {
