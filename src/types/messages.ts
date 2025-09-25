@@ -32,7 +32,7 @@ import type {
   InteractiveTypesEnum,
   LanguagesEnum,
   MessageTypesEnum,
-  ParametersTypesEnum,
+  ParameterTypesEnum,
   TemplateIndustryEnum,
   TemplateTopicEnum,
   TemplateUseCaseEnum,
@@ -488,13 +488,13 @@ export type MessageLanguageType = {
  */
 
 export type TextNamedParametersType = {
-  type: ParametersTypesEnum.Text;
+  type: ParameterTypesEnum.Text;
   parameter_name: string;
   text: string;
 };
 
 export type TextPositionalParametersType = {
-  type: ParametersTypesEnum.Text;
+  type: ParameterTypesEnum.Text;
   text: string;
 };
 
@@ -505,7 +505,7 @@ export type MessageCurrencyType = {
 };
 
 export type CurrencyParametersType = {
-  type: ParametersTypesEnum.Currency;
+  type: ParameterTypesEnum.Currency;
   currency: MessageCurrencyType;
 };
 
@@ -514,27 +514,27 @@ export type MessageDateTimeType = {
 };
 
 export type DateTimeParametersType = {
-  type: ParametersTypesEnum.DateTime;
+  type: ParameterTypesEnum.DateTime;
   date_time: MessageDateTimeType
 };
 
 export type DocumentParametersType =
   DocumentMediaMessageType & {
-    type: ParametersTypesEnum.Document;
+    type: ParameterTypesEnum.Document;
   };
 
 export type ImageParametersType =
   ImageMediaMessageType & {
-    type: ParametersTypesEnum.Image;
+    type: ParameterTypesEnum.Image;
   };
 
 export type VideoParametersType =
   VideoMediaMessageType & {
-    type: ParametersTypesEnum.Video;
+    type: ParameterTypesEnum.Video;
   };
 
 export type LimitedTimeOfferParametersType = {
-  type: ParametersTypesEnum.LimitedTimeOffer;
+  type: ParameterTypesEnum.LimitedTimeOffer;
   limited_time_offer: {
     expiration_time_ms: number;
   }
@@ -548,12 +548,12 @@ export type LocationMessageType = {
 };
 
 export type LocationParametersType = {
-  type: ParametersTypesEnum.Location;
+  type: ParameterTypesEnum.Location;
   location: LocationMessageType;
 }
 
 export type TapTargetParametersType = {
-  type: ParametersTypesEnum.TapTarget;
+  type: ParameterTypesEnum.TapTarget;
   tap_target_configuration: {
     url: URL;
     title: string;
@@ -572,24 +572,24 @@ type ParametersType =
   | VideoParametersType;
 
 export type CatalogButtonParametersType = {
-  type: ParametersTypesEnum.Action;
+  type: ParameterTypesEnum.Action;
   action?: {
     thumbnail_product_retailer_id: string;
   }
 };
 
 export type CouponButtonParametersType = {
-  type: ParametersTypesEnum.CouponCode;
+  type: ParameterTypesEnum.CouponCode;
   coupon_code: string;
 };
 
 export type QuickReplyButtonParametersType = {
-  type: ParametersTypesEnum.Payload;
+  type: ParameterTypesEnum.Payload;
   payload: string;
 };
 
 export type URLButtonParametersType = {
-  type: ParametersTypesEnum.Text;
+  type: ParameterTypesEnum.Text;
   text: string;
 };
 

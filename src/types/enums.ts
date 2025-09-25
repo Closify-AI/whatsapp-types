@@ -44,7 +44,7 @@ export const enum MessageTypesEnum {
   Video = 'video', // for video messages
 }
 
-export const enum ParametersTypesEnum {
+export const enum ParameterTypesEnum {
   Action = 'action',
   CouponCode = 'coupon_code',
   Currency = 'currency',

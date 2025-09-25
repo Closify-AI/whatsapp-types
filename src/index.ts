@@ -47,7 +47,7 @@ export {
   InteractiveTypesEnum,
   LanguagesEnum,
   MessageTypesEnum,
-  ParametersTypesEnum,
+  ParameterTypesEnum,
   ReferralSourceTypesEnum,
   StatusEnum,
   StickerMediaTypesEnum,
