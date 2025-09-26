@@ -554,6 +554,15 @@ export type ProductParametersType = {
   }
 }
 
+export type RegisteredFlowButtonsParametersType = {
+  type: ParameterTypesEnum.Flow;
+  text: string;
+  flow_action: 'navigate' | 'data_exchange';
+  flow_id: string;
+  flow_json?: never;
+  navigate_screen?: string;
+}
+
 export type TapTargetParametersType = {
   type: ParameterTypesEnum.TapTarget;
   tap_target_configuration: {
@@ -572,6 +581,15 @@ export type TextPositionalParametersType = {
   type: ParameterTypesEnum.Text;
   text: string;
 };
+
+export type UnregisteredFlowButtonsParametersType = {
+  type: ParameterTypesEnum.Flow;
+  text: string;
+  flow_action: 'navigate' | 'data_exchange';
+  flow_id?: never;
+  flow_json?: string;
+  navigate_screen?: string;
+}
 
 export type VideoParametersType =
   VideoMediaMessageType & {
@@ -641,6 +659,11 @@ export type ButtonComponentType<T extends ButtonParametersType> = {
   index: ButtonPositionEnum;
 };
 
+export type FlowButtonsComponentType = {
+  type: ComponentTypesEnum.Buttons;
+  buttons: (RegisteredFlowButtonsParametersType | UnregisteredFlowButtonsParametersType)[];
+}
+
 type CarouselSubComponentType = 
   | MessageComponentType<ComponentTypesEnum.Header, CarouselParametersType>
   | MessageComponentType<ComponentTypesEnum.Header, ProductParametersType>
@@ -689,6 +712,17 @@ export type AuthenticationTemplateRequestBodyType =
   MessageRequestBodyType<MessageTypesEnum.Template> &
   { [MessageTypesEnum.Template]: TemplateMessageType<ComponentTypesEnum.Body, TextPositionalParametersType> } &
   { [MessageTypesEnum.Template]: TemplateButtonMessageType<URLButtonParametersType> };
+
+/**
+ * Flow template messages
+ * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates/flows-templates
+ */
+export type FlowTemplateCreateRequestBodyType = {
+  name: string;
+  category: 'MARKETING' | 'UTILITY';
+  language: LanguagesEnum;
+  components: (MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType> | FlowButtonsComponentType)[];
+}
 
 /**
  * Interactive template messages

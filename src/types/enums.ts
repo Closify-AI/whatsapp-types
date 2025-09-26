@@ -50,6 +50,7 @@ export const enum ParameterTypesEnum {
   Currency = 'currency',
   DateTime = 'date_time',
   Document = 'document',
+  Flow = 'flow',
   Image = 'image',
   LimitedTimeOffer = 'limited_time_offer',
   Location = 'location',
@@ -88,6 +89,7 @@ export const enum ButtonPositionEnum {
 export const enum ComponentTypesEnum {
   Body = 'body',
   Button = 'button',
+  Buttons = 'buttons',
   Carousel = 'carousel',
   Header = 'header',
   LimitedTimeOffer = 'limited_time_offer',
