@@ -33,7 +33,9 @@ import type {
   LanguagesEnum,
   MessageTypesEnum,
   ParameterTypesEnum,
+  TemplateCategoryEnum,
   TemplateIndustryEnum,
+  TemplateStatusEnum,
   TemplateTopicEnum,
   TemplateUseCaseEnum,
 } from './enums.ts';
@@ -734,7 +736,7 @@ export type FlowRequestBodyType =
 
 export type FlowTemplateCreateRequestBodyType = {
   name: string;
-  category: 'MARKETING' | 'UTILITY';
+  category: TemplateCategoryEnum.Marketing;
   language: LanguagesEnum;
   components: (MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType> | FlowButtonsComponentType)[];
 }
@@ -819,7 +821,7 @@ export type TemplateLibraryPhoneNumberButtonInputType = {
 
 export type TemplateLibraryCreateRequestBodyType = {
   name: string;
-  category: 'UTILITY';
+  category: TemplateCategoryEnum.Utility;
   language: LanguagesEnum;
   library_template_name: string;
   library_template_button_inputs: (TemplateLibraryURLButtonInputType | TemplateLibraryPhoneNumberButtonInputType)[];
@@ -827,8 +829,8 @@ export type TemplateLibraryCreateRequestBodyType = {
 
 export type TemplateCreateResponseBodyType = {
   id: string;
-  status: 'PENDING' | 'APPROVED' | 'REJECTED' | 'DELETED';
-  category: 'UTILITY';
+  status: TemplateStatusEnum;
+  category: TemplateCategoryEnum;
 }
 
 export type TemplateLibraryQueryRequestBodyType = {
@@ -842,7 +844,7 @@ export type TemplateLibraryQueryRequestBodyType = {
 export type TemplateLibraryResponseBodyType = {
   name: string;
   language: LanguagesEnum;
-  category: string;
+  category: TemplateCategoryEnum;
   topic: TemplateTopicEnum;
   usecase: TemplateUseCaseEnum;
   industry: TemplateIndustryEnum[];

@@ -188,6 +188,12 @@ export const enum ReferralSourceTypesEnum {
   Post = 'post',
 }
 
+export const enum TemplateCategoryEnum {
+  Authentication = 'AUTHENTICATION',
+  Marketing = 'MARKETING',
+  Utility = "UTILITY"
+}
+
 export const enum TemplateIndustryEnum {
   ECommerce = 'ECOMMERCE',
   FinancialServices = 'FINANCIAL_SERVICES',
@@ -202,6 +208,12 @@ export const enum TemplateLibraryParameterEnum {
   Number = 'NUMBER',
   PhoneNumber = 'PHONE_NUMBER',
   Text = 'TEXT',
+}
+
+export const enum TemplateStatusEnum {
+  Approved = 'APPROVED',
+  Pending = 'PENDING',
+  Rejected = 'REJECTED',
 }
 
 export const enum TemplateTopicEnum {
