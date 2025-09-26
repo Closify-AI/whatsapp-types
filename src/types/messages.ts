@@ -546,7 +546,7 @@ export type MessageDateTimeType = {
   fallback_value: string;
 };
 
-export type ProductCarouselParametersType = {
+export type ProductParametersType = {
   type: ParameterTypesEnum.Product;
   product: {
     product_retailer_id: string;
@@ -586,7 +586,7 @@ type ParametersType =
   | ImageParametersType
   | LimitedTimeOfferParametersType
   | LocationParametersType
-  | ProductCarouselParametersType
+  | ProductParametersType
   | TapTargetParametersType
   | TextNamedParametersType
   | TextPositionalParametersType
@@ -643,7 +643,7 @@ export type ButtonComponentType<T extends ButtonParametersType> = {
 
 type CarouselSubComponentType = 
   | MessageComponentType<ComponentTypesEnum.Header, CarouselParametersType>
-  | MessageComponentType<ComponentTypesEnum.Header, ProductCarouselParametersType>
+  | MessageComponentType<ComponentTypesEnum.Header, ProductParametersType>
   | MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>
   | ButtonComponentType<QuickReplyButtonParametersType | URLButtonParametersType>;
 
@@ -671,6 +671,14 @@ export type TemplateCarouselMessageType<T extends CarouselSubComponentType> = {
   name: string;
   language: MessageLanguageType;
   components: (MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType> | CarouselComponentType<T>)[];
+}
+
+export type TemplateSingleProductMessageType = {
+  name: string;
+  language: MessageLanguageType & {
+    policy: 'deterministic'
+  };
+  components: (MessageComponentType<ComponentTypesEnum.Header, ProductParametersType> | MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>)[];
 }
 
 /**
