@@ -825,7 +825,7 @@ export type TemplateLibraryCreateRequestBodyType = {
   library_template_button_inputs: (TemplateLibraryURLButtonInputType | TemplateLibraryPhoneNumberButtonInputType)[];
 }
 
-export type TemplateLibraryCreateResponseBodyType = {
+export type TemplateCreateResponseBodyType = {
   id: string;
   status: 'PENDING' | 'APPROVED' | 'REJECTED' | 'DELETED';
   category: 'UTILITY';
