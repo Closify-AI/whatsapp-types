@@ -56,6 +56,16 @@ export type MarkAsReadMessageType = {
 
 export type MarkAsReadRequestBodyType = GeneralMessageBodyType & MarkAsReadMessageType;
 
+export type TypingIndicatorMessageType = {
+  status: 'read';
+  message_id: string;
+  typing_indicator: {
+    type: 'text';
+  }
+}
+
+export type TypingIndicatorRequestBodyType = GeneralMessageBodyType & TypingIndicatorMessageType;
+
 export type ReplyToMessageType = {
   message_id: string;
 };
@@ -480,7 +490,7 @@ export type VideoMessageRequestBodyType =
   };
 
 export type MessageLanguageType = {
-  policy: 'deterministic';
+  policy?: 'deterministic';
   code: LanguagesEnum;
 };
 
@@ -677,7 +687,7 @@ export type FlowButtonsComponentType = {
   buttons: (RegisteredFlowButtonsParametersType | UnregisteredFlowButtonsParametersType)[];
 }
 
-type CarouselSubComponentType = 
+type CarouselSubComponentType =
   | MessageComponentType<ComponentTypesEnum.Header, CarouselParametersType>
   | MessageComponentType<ComponentTypesEnum.Header, ProductParametersType>
   | MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>
@@ -901,7 +911,7 @@ export declare class MessagesClass extends BaseClass {
     replyMessageId?: string,
   ): Promise<RequesterResponseInterface<MessagesResponseType>>;
   status(
-    body: StatusMessageType,
+    body: MarkAsReadMessageType,
   ): Promise<RequesterResponseInterface<MessagesResponseType>>;
   sticker(
     body: StickerMediaMessageType,

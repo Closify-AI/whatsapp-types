@@ -185,6 +185,8 @@ export type {
   TextNamedParametersType,
   TextPositionalParametersType,
   TextTemplateRequestBodyType,
+  TypingIndicatorMessageType,
+  TypingIndicatorRequestBodyType,
   UnnamedFlowParametersType,
   UnregisteredFlowButtonsParametersType,
   URLButtonParametersType,
