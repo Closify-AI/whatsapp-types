@@ -49,12 +49,12 @@ export type GeneralMessageBodyType = GeneralRequestBodyType & {
   messaging_product: 'whatsapp';
 };
 
-export type StatusMessageType = {
+export type MarkAsReadMessageType = {
   status: 'read';
   message_id: string;
 };
 
-export type StatusRequestBodyType = GeneralMessageBodyType & StatusMessageType;
+export type MarkAsReadRequestBodyType = GeneralMessageBodyType & MarkAsReadMessageType;
 
 export type MessageContextType = {
   message_id: string;
