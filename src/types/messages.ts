@@ -56,7 +56,7 @@ export type MarkAsReadMessageType = {
 
 export type MarkAsReadRequestBodyType = GeneralMessageBodyType & MarkAsReadMessageType;
 
-export type MessageContextType = {
+export type ReplyToMessageType = {
   message_id: string;
 };
 
@@ -64,7 +64,7 @@ export type MessageRequestBodyType<T extends MessageTypesEnum> =
   GeneralMessageBodyType & {
     recipient_type?: string;
     to: string;
-    context?: MessageContextType;
+    context?: ReplyToMessageType;
     type?: T;
   };
 
