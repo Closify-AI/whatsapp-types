@@ -142,6 +142,7 @@ export type {
   MetaHostedVideoMediaType,
   MetaImageMediaType,
   MetaStickerMediaType,
+  MpmButtonParametersType,
   MultiProductSectionType,
   NamedFlowParametersType,
   ProductInteractiveType,

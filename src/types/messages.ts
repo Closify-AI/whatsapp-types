@@ -595,6 +595,14 @@ export type CouponButtonParametersType = {
   coupon_code: string;
 };
 
+export type MpmButtonParametersType = {
+  type: ParameterTypesEnum.Action;
+  action: {
+    thumbnail_product_retailer_id: string;
+    sections: MultiProductSectionType[];
+  }
+}
+
 export type QuickReplyButtonParametersType = {
   type: ParameterTypesEnum.Payload;
   payload: string;
@@ -609,6 +617,7 @@ type ButtonParametersType =
   | CatalogButtonParametersType
   | CouponButtonParametersType
   | QuickReplyButtonParametersType
+  | MpmButtonParametersType
   | URLButtonParametersType;
 
 export type MessageComponentType<T extends ComponentTypesEnum, U extends ParametersType> = {
