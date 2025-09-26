@@ -622,6 +622,16 @@ export type CouponButtonParametersType = {
   coupon_code: string;
 };
 
+export type FlowButtonParametersType = {
+  type: ParameterTypesEnum.Action;
+  action: {
+    flow_token?: string | 'unused';
+    flow_action_data?: {
+      [key: string]: string | object;
+    }
+  }
+}
+
 export type MpmButtonParametersType = {
   type: ParameterTypesEnum.Action;
   action: {
@@ -643,6 +653,7 @@ export type URLButtonParametersType = {
 type ButtonParametersType =
   | CatalogButtonParametersType
   | CouponButtonParametersType
+  | FlowButtonParametersType
   | QuickReplyButtonParametersType
   | MpmButtonParametersType
   | URLButtonParametersType;
@@ -717,6 +728,10 @@ export type AuthenticationTemplateRequestBodyType =
  * Flow template messages
  * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates/flows-templates
  */
+export type FlowRequestBodyType =
+  MessageRequestBodyType<MessageTypesEnum.Template> &
+  { [MessageTypesEnum.Template]: TemplateButtonMessageType<FlowButtonParametersType> }
+
 export type FlowTemplateCreateRequestBodyType = {
   name: string;
   category: 'MARKETING' | 'UTILITY';

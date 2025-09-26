@@ -75,6 +75,7 @@ export const enum InteractiveTypesEnum {
 export const enum ButtonTypesEnum {
   Catalog = 'catalog',
   CopyCode = 'copy_code',
+  Flow = 'flow',
   QuickReply = 'quick_reply',
   MultiProduct = 'mpm',
   URL = 'url',
