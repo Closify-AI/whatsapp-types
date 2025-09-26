@@ -54,6 +54,7 @@ export const enum ParameterTypesEnum {
   LimitedTimeOffer = 'limited_time_offer',
   Location = 'location',
   Payload = 'payload',
+  Product = 'product',
   TapTarget = 'tap_target_configuration',
   Text = 'text',
   Video = 'video',

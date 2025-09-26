@@ -487,29 +487,12 @@ export type MessageLanguageType = {
  * https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates
  */
 
-export type TextNamedParametersType = {
-  type: ParameterTypesEnum.Text;
-  parameter_name: string;
-  text: string;
-};
-
-export type TextPositionalParametersType = {
-  type: ParameterTypesEnum.Text;
-  text: string;
-};
-
-export type MessageCurrencyType = {
-  fallback_value: string;
-  code: CurrencyCodesEnum;
-  amount_1000: number;
-};
-
 export type CarouselParametersType = {
-  type: 'image' | 'video';
-  image?: {
+  type: ParameterTypesEnum.Image | ParameterTypesEnum.Video;
+  [ParameterTypesEnum.Image]?: {
     id: string;
   };
-  video?: {
+  [ParameterTypesEnum.Video]?: {
     id: string;
   };
 };
@@ -517,10 +500,6 @@ export type CarouselParametersType = {
 export type CurrencyParametersType = {
   type: ParameterTypesEnum.Currency;
   currency: MessageCurrencyType;
-};
-
-export type MessageDateTimeType = {
-  fallback_value: string;
 };
 
 export type DateTimeParametersType = {
@@ -536,11 +515,6 @@ export type DocumentParametersType =
 export type ImageParametersType =
   ImageMediaMessageType & {
     type: ParameterTypesEnum.Image;
-  };
-
-export type VideoParametersType =
-  VideoMediaMessageType & {
-    type: ParameterTypesEnum.Video;
   };
 
 export type LimitedTimeOfferParametersType = {
@@ -562,6 +536,24 @@ export type LocationParametersType = {
   location: LocationMessageType;
 }
 
+export type MessageCurrencyType = {
+  fallback_value: string;
+  code: CurrencyCodesEnum;
+  amount_1000: number;
+};
+
+export type MessageDateTimeType = {
+  fallback_value: string;
+};
+
+export type ProductCarouselParametersType = {
+  type: ParameterTypesEnum.Product;
+  product: {
+    product_retailer_id: string;
+    catalog_id: string;
+  }
+}
+
 export type TapTargetParametersType = {
   type: ParameterTypesEnum.TapTarget;
   tap_target_configuration: {
@@ -569,6 +561,22 @@ export type TapTargetParametersType = {
     title: string;
   }
 }
+
+export type TextNamedParametersType = {
+  type: ParameterTypesEnum.Text;
+  parameter_name: string;
+  text: string;
+};
+
+export type TextPositionalParametersType = {
+  type: ParameterTypesEnum.Text;
+  text: string;
+};
+
+export type VideoParametersType =
+  VideoMediaMessageType & {
+    type: ParameterTypesEnum.Video;
+  };
 
 type ParametersType =
   | CarouselParametersType
@@ -578,6 +586,7 @@ type ParametersType =
   | ImageParametersType
   | LimitedTimeOfferParametersType
   | LocationParametersType
+  | ProductCarouselParametersType
   | TapTargetParametersType
   | TextNamedParametersType
   | TextPositionalParametersType
@@ -634,6 +643,7 @@ export type ButtonComponentType<T extends ButtonParametersType> = {
 
 type CarouselSubComponentType = 
   | MessageComponentType<ComponentTypesEnum.Header, CarouselParametersType>
+  | MessageComponentType<ComponentTypesEnum.Header, ProductCarouselParametersType>
   | MessageComponentType<ComponentTypesEnum.Body, TextPositionalParametersType>
   | ButtonComponentType<QuickReplyButtonParametersType | URLButtonParametersType>;
 

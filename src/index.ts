@@ -145,6 +145,7 @@ export type {
   MpmButtonParametersType,
   MultiProductSectionType,
   NamedFlowParametersType,
+  ProductCarouselParametersType,
   ProductInteractiveType,
   ProductListInteractiveType,
   QuickReplyButtonParametersType,
