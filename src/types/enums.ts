@@ -23,14 +23,14 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export const enum HttpMethodsEnum {
+export enum HttpMethodsEnum {
   Get = 'GET',
   Post = 'POST',
   Put = 'PUT',
   Delete = 'DELETE',
 }
 
-export const enum MessageTypesEnum {
+export enum MessageTypesEnum {
   Audio = 'audio', // for audio messages.
   Contacts = 'contacts', // for contact messages.
   Document = 'document', // for document messages.
@@ -44,7 +44,7 @@ export const enum MessageTypesEnum {
   Video = 'video', // for video messages
 }
 
-export const enum ParameterTypesEnum {
+export enum ParameterTypesEnum {
   Action = 'action',
   CouponCode = 'coupon_code',
   Currency = 'currency',
@@ -61,7 +61,7 @@ export const enum ParameterTypesEnum {
   Video = 'video',
 }
 
-export const enum InteractiveTypesEnum {
+export enum InteractiveTypesEnum {
   Address = 'address_message',
   Button = 'button',
   CallToAction = 'cta_url',
@@ -72,7 +72,7 @@ export const enum InteractiveTypesEnum {
   ProductList = 'product_list',
 }
 
-export const enum ButtonTypesEnum {
+export enum ButtonTypesEnum {
   Catalog = 'catalog',
   CopyCode = 'copy_code',
   Flow = 'flow',
@@ -81,13 +81,13 @@ export const enum ButtonTypesEnum {
   URL = 'url',
 }
 
-export const enum ButtonPositionEnum {
+export enum ButtonPositionEnum {
   First,
   Second,
   Third,
 }
 
-export const enum ComponentTypesEnum {
+export enum ComponentTypesEnum {
   Body = 'body',
   Button = 'button',
   Buttons = 'buttons',
@@ -118,34 +118,34 @@ export enum WARequiredConfigEnum {
   AccessToken = 'CLOUD_API_ACCESS_TOKEN',
 }
 
-export const enum ConversationTypesEnum {
+export enum ConversationTypesEnum {
   BusinessInitiated = 'business_initiated',
   CustomerInitiated = 'customer_initiated',
   ReferralConversion = 'referral_conversion',
 }
 
-export const enum StatusEnum {
+export enum StatusEnum {
   Delivered = 'delivered',
   Failed = 'failed',
   Read = 'read',
   Sent = 'sent',
 }
 
-export const enum VideoMediaTypesEnum {
+export enum VideoMediaTypesEnum {
   Mp4 = 'video/mp4',
   Threegp = 'video/3gp',
 }
 
-export const enum StickerMediaTypesEnum {
+export enum StickerMediaTypesEnum {
   Webp = 'image/webp',
 }
 
-export const enum ImageMediaTypesEnum {
+export enum ImageMediaTypesEnum {
   Jpeg = 'image/jpeg',
   Png = 'image/png',
 }
 
-export const enum DocumentMediaTypesEnum {
+export enum DocumentMediaTypesEnum {
   Text = 'text/plain',
   Pdf = 'application/pdf',
   Ppt = 'application/vnd.ms-powerpoint',
@@ -156,7 +156,7 @@ export const enum DocumentMediaTypesEnum {
   OpenSheet = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 }
 
-export const enum AudioMediaTypesEnum {
+export enum AudioMediaTypesEnum {
   Aac = 'audio/aac',
   Mp4 = 'audio/mp4',
   Mpeg = 'audio/mpeg',
@@ -164,7 +164,7 @@ export const enum AudioMediaTypesEnum {
   Ogg = 'audio/ogg',
 }
 
-export const enum WebhookTypesEnum {
+export enum WebhookTypesEnum {
   Audio = 'audio',
   Button = 'button',
   Document = 'document',
@@ -178,29 +178,29 @@ export const enum WebhookTypesEnum {
   Video = 'video',
 }
 
-export const enum SystemChangeTypesEnum {
+export enum SystemChangeTypesEnum {
   CustomerChangedNumber = 'customer_changed_number',
   CustomerIdentityChanged = 'customer_identity_changed',
 }
 
-export const enum ReferralSourceTypesEnum {
+export enum ReferralSourceTypesEnum {
   Ad = 'ad',
   Post = 'post',
 }
 
-export const enum TemplateCategoryEnum {
+export enum TemplateCategoryEnum {
   Authentication = 'AUTHENTICATION',
   Marketing = 'MARKETING',
   Utility = "UTILITY"
 }
 
-export const enum TemplateIndustryEnum {
+export enum TemplateIndustryEnum {
   ECommerce = 'ECOMMERCE',
   FinancialServices = 'FINANCIAL_SERVICES',
   Hospitality = 'HOSPITALITY',
 }
 
-export const enum TemplateLibraryParameterEnum {
+export enum TemplateLibraryParameterEnum {
   Address = 'ADDRESS',
   Amount = 'AMOUNT',
   Date = 'DATE',
@@ -210,20 +210,20 @@ export const enum TemplateLibraryParameterEnum {
   Text = 'TEXT',
 }
 
-export const enum TemplateStatusEnum {
+export enum TemplateStatusEnum {
   Approved = 'APPROVED',
   Pending = 'PENDING',
   Rejected = 'REJECTED',
 }
 
-export const enum TemplateTopicEnum {
+export enum TemplateTopicEnum {
   AccountUpdate = 'ACCOUNT_UPDATE',
   CustomerFeedback = 'CUSTOMER_FEEDBACK',
   OrderManagement = 'ORDER_MANAGEMENT',
   Payments = 'PAYMENTS',
 }
 
-export const enum TemplateUseCaseEnum {
+export enum TemplateUseCaseEnum {
   AccountCreationInformation = 'ACCOUNT_CREATION_INFORMATION',
   AutoPayReminder = 'AUTO_PAY_REMINDER',
   DeliveryConfirmation = 'DELIVERY_CONFIRMATION',
@@ -251,7 +251,7 @@ export const enum TemplateUseCaseEnum {
   TransactionAlert = 'TRANSACTION_ALERT',
 }
 
-export const enum LanguagesEnum {
+export enum LanguagesEnum {
   Afrikaans = 'af',
   Albanian = 'sq',
   Arabic = 'ar',
@@ -325,7 +325,7 @@ export const enum LanguagesEnum {
   Zulu = 'zu',
 }
 
-export const enum CurrencyCodesEnum {
+export enum CurrencyCodesEnum {
   AFN = 'AFN',
   EUR = 'EUR',
   ALL = 'ALL',
