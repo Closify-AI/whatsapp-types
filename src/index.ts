@@ -23,16 +23,9 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-// types 
-export { BaseClass } from './types/base.js';
+// types
 export type { WAConfigType } from './types/config.js';
-export { HttpsServerClass } from './types/httpsServer.js';
 export type { LoggerInterface } from './types/logger.js';
-export { MessagesClass } from './types/messages.js';
-export { RequesterClass } from './types/requester.js';
-export { TwoStepVerificationClass } from './types/twoStepVerification.js';
-export { WebhooksClass } from './types/webhooks.js';
-export { WhatsAppClass } from './types/WhatsApp.js';
 
 export {
   AudioMediaTypesEnum,
@@ -63,11 +56,6 @@ export {
   WARequiredConfigEnum,
   WebhookTypesEnum
 } from './types/enums.js';
-
-export {
-  HttpsClientClass,
-  HttpsClientResponseClass
-} from './types/httpsClient.js';
 
 export type {
   RequestDataType,

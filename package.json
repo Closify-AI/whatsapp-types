@@ -4,8 +4,8 @@
     "url": "https://github.com/Closify-AI/whatsapp-types/issues"
   },
   "dependencies": {
-    "@types/node": "^24.5.0",
-    "zod": "^4.1.9"
+    "@types/node": "^24.7.2",
+    "zod": "^4.1.12"
   },
   "description": "WhatsApp Business types for NodeJS",
   "engines": {
@@ -40,5 +40,5 @@
   },
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "1.0.0-beta.3"
+  "version": "1.0.0-beta.4"
 }
