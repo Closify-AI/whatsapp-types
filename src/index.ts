@@ -32,6 +32,7 @@ export {
   ButtonPositionEnum,
   ButtonTypesEnum,
   ComponentTypesEnum,
+  ConversationCategoryEnum,
   ConversationTypesEnum,
   CurrencyCodesEnum,
   DocumentMediaTypesEnum,
@@ -41,6 +42,7 @@ export {
   LanguagesEnum,
   MessageTypesEnum,
   ParameterTypesEnum,
+  PricingTypeEnum,
   ReferralSourceTypesEnum,
   StatusEnum,
   StickerMediaTypesEnum,
@@ -54,7 +56,7 @@ export {
   VideoMediaTypesEnum,
   WAConfigEnum,
   WARequiredConfigEnum,
-  WebhookTypesEnum
+  WebhookMessageTypesEnum
 } from './types/enums.js';
 
 export type {
@@ -200,41 +202,37 @@ export type {
 } from './types/version.js';
 
 export type {
-  WebhookAudioType,
-  WebhookButtonReplyType,
-  WebhookButtonType,
+  WebhookAudioMessageType,
+  WebhookButtonMessageType,
+  WebhookButtonReplyInteractiveMessageType,
   WebhookCallbackType,
-  WebhookChangesType,
+  WebhookChangeType,
   WebhookContactType,
-  WebhookContextType,
-  WebhookConversationType,
-  WebhookDocumentType,
+  WebhookContextMessageType,
+  WebhookDocumentMessageType,
   WebhookEntryType,
-  WebhookErrorDataType,
-  WebhookErrorType,
-  WebhookIdentityType,
-  WebhookImageType,
-  WebhookInteractiveType,
-  WebhookListReplyType,
-  WebhookMessagesType,
+  WebhookIdentityMessageType,
+  WebhookImageMessageType,
+  WebhookInteractiveMessageType,
+  WebhookListReplyInteractiveMessageType,
+  WebhookMessageType,
   WebhookMetadataType,
-  WebhookNfmReplyType,
-  WebhookOrderType,
-  WebhookOriginType,
-  WebhookPricingType,
-  WebhookProductItemsType,
-  WebhookProfileType,
+  WebhookNfmReplyInteractiveMessageType,
+  WebhookOrderMessageType,
+  WebhookProductItemType,
   WebhookReferralType,
-  WebhookStatusesType,
-  WebhookStickerType,
+  WebhookStatusConversationType,
+  WebhookStatusErrorType,
+  WebhookStatusPricingType,
+  WebhookStatusType,
+  WebhookStickerMessageType,
   WebhookSubscribeQueryType,
-  WebhookSystemType,
-  WebhookTextType,
+  WebhookSystemMessageType,
+  WebhookTextMessageType,
   WebhookType,
   WebhookValueType,
-  WebhookVideoType
+  WebhookVideoMessageType,
 } from './types/webhooks.js';
 
 // typeCheckers
 export { isWebhookType } from './typesCheckers/webhooksCheckers.js';
-

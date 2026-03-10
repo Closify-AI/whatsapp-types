@@ -299,9 +299,7 @@ export type MessageFlowActionType = {
     flow_action: 'navigate' | 'data_exchange';
     flow_action_payload?: {
       screen: string | 'FIRST_ENTRY_SCREEN';
-      data?: {
-        [key: string]: string;
-      }
+      data?: Record<string, string | number | boolean | Array<string | number | boolean>>;
     }
   }
 };

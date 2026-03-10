@@ -36,6 +36,6 @@ export type SetPinResponseType = {
 
 export declare class TwoStepVerificationClass extends BaseClass {
 	setPin(
-		pin: number,
+		pin: string,
 	): Promise<RequesterResponseInterface<SetPinResponseType>>;
 }

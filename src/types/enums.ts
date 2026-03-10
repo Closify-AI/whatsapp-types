@@ -118,10 +118,26 @@ export enum WARequiredConfigEnum {
   AccessToken = 'CLOUD_API_ACCESS_TOKEN',
 }
 
+export enum ConversationCategoryEnum {
+  Authentication = 'authentication',
+  AuthenticationInternational = 'authentication_international',
+  Marketing = 'marketing',
+  MarketingLite = 'marketing_lite',
+  ReferralConversion = 'referral_conversion',
+  Service = 'service',
+  Utility = 'utility',
+}
+
 export enum ConversationTypesEnum {
   BusinessInitiated = 'business_initiated',
   CustomerInitiated = 'customer_initiated',
   ReferralConversion = 'referral_conversion',
+}
+
+export enum PricingTypeEnum {
+  FreeCustomerService = 'free_customer_service',
+  FreeEntryPoint = 'free_entry_point',
+  Regular = 'regular',
 }
 
 export enum StatusEnum {
@@ -164,7 +180,7 @@ export enum AudioMediaTypesEnum {
   Ogg = 'audio/ogg',
 }
 
-export enum WebhookTypesEnum {
+export enum WebhookMessageTypesEnum {
   Audio = 'audio',
   Button = 'button',
   Document = 'document',
