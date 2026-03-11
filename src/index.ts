@@ -32,6 +32,7 @@ export {
   ButtonPositionEnum,
   ButtonTypesEnum,
   ComponentTypesEnum,
+  ContactAddressTypesEnum,
   ConversationCategoryEnum,
   ConversationTypesEnum,
   CurrencyCodesEnum,
@@ -42,6 +43,7 @@ export {
   LanguagesEnum,
   MessageTypesEnum,
   ParameterTypesEnum,
+  PricingCategoryEnum,
   PricingTypeEnum,
   ReferralSourceTypesEnum,
   StatusEnum,
@@ -53,6 +55,7 @@ export {
   TemplateStatusEnum,
   TemplateTopicEnum,
   TemplateUseCaseEnum,
+  UnsupportedTypesEnum,
   VideoMediaTypesEnum,
   WAConfigEnum,
   WARequiredConfigEnum,
@@ -60,6 +63,8 @@ export {
 } from './types/enums.js';
 
 export type {
+  HttpsClientClass,
+  HttpsClientResponseClass,
   RequestDataType,
   RequestHeadersType,
   ResponseHeadersType,
@@ -134,6 +139,7 @@ export type {
   MessageReplyButtonType,
   MessageRequestBodyType,
   MessageRowType,
+  MessagesClass,
   MessageSectionType,
   MessageSimpleTextType,
   MessagesResponseType,
@@ -188,11 +194,13 @@ export type {
 export type {
   GeneralHeaderInterface,
   GeneralRequestBodyType,
+  RequesterClass,
   RequesterResponseInterface
 } from './types/requester.js';
 
 export type {
   SetPinResponseType,
+  TwoStepVerificationClass,
   TwoStepVerificationType
 } from './types/twoStepVerification.js';
 
@@ -207,20 +215,35 @@ export type {
   WebhookButtonReplyInteractiveMessageType,
   WebhookCallbackType,
   WebhookChangeType,
+  WebhookContactAddressMessageType,
+  WebhookContactEmailMessageType,
+  WebhookContactMessageType,
+  WebhookContactNameMessageType,
+  WebhookContactOrgMessageType,
+  WebhookContactPhoneMessageType,
   WebhookContactType,
-  WebhookContextMessageType,
+  WebhookContactURLMessageType,
+  WebhookContextMessageBusinessType,
+  WebhookContextMessageForwardedType,
   WebhookDocumentMessageType,
+  WebhookEditImageMessageType,
+  WebhookEditMessageType,
   WebhookEntryType,
+  WebhookErrorMessageType,
   WebhookIdentityMessageType,
   WebhookImageMessageType,
   WebhookInteractiveMessageType,
   WebhookListReplyInteractiveMessageType,
+  WebhookLocationMessageType,
   WebhookMessageType,
   WebhookMetadataType,
   WebhookNfmReplyInteractiveMessageType,
   WebhookOrderMessageType,
   WebhookProductItemType,
+  WebhookReactionMessageType,
   WebhookReferralType,
+  WebhookRevokeMessageType,
+  WebhooksClass,
   WebhookStatusConversationType,
   WebhookStatusErrorType,
   WebhookStatusPricingType,
@@ -230,6 +253,7 @@ export type {
   WebhookSystemMessageType,
   WebhookTextMessageType,
   WebhookType,
+  WebhookUnsupportedMessageType,
   WebhookValueType,
   WebhookVideoMessageType,
 } from './types/webhooks.js';

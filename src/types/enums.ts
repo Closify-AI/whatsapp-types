@@ -152,6 +152,11 @@ export enum ComponentTypesEnum {
   TapTarget = 'tap_target_configuration',
 }
 
+export enum ContactAddressTypesEnum {
+  Home = 'home',
+  Work = 'work',
+}
+
 export enum ConversationCategoryEnum {
   Authentication = 'authentication',
   AuthenticationInternational = 'authentication_international',
@@ -596,6 +601,16 @@ export enum ParameterTypesEnum {
   Video = 'video',
 }
 
+export enum PricingCategoryEnum {
+  Authentication = 'authentication',
+  AuthenticationInternational = 'authentication_international',
+  Marketing = 'marketing',
+  MarketingLite = 'marketing_lite',
+  ReferralConversion = 'referral_conversion',
+  Service = 'service',
+  Utility = 'utility',
+}
+
 export enum PricingTypeEnum {
   FreeCustomerService = 'free_customer_service',
   FreeEntryPoint = 'free_entry_point',
@@ -610,6 +625,7 @@ export enum ReferralSourceTypesEnum {
 export enum StatusEnum {
   Delivered = 'delivered',
   Failed = 'failed',
+  Played = 'played',
   Read = 'read',
   Sent = 'sent',
 }
@@ -617,6 +633,14 @@ export enum StatusEnum {
 export enum SystemChangeTypesEnum {
   CustomerChangedNumber = 'customer_changed_number',
   CustomerIdentityChanged = 'customer_identity_changed',
+  UserChangedNumber = 'user_changed_number',
+  UserIdentityChanged = 'user_identity_changed',
+}
+
+export enum UnsupportedTypesEnum {
+  Button = 'button',
+  Edit = 'edit',
+  Poll = 'poll',
 }
 
 export enum WAConfigEnum {
@@ -643,13 +667,19 @@ export enum WARequiredConfigEnum {
 export enum WebhookMessageTypesEnum {
   Audio = 'audio',
   Button = 'button',
+  Contacts = 'contacts',
   Document = 'document',
+  Edit = 'edit',
   Image = 'image',
   Interactive = 'interactive',
+  Location = 'location',
   Order = 'order',
+  Reaction = 'reaction',
+  Revoke = 'revoke',
   Sticker = 'sticker',
   System = 'system',
   Text = 'text',
   Unknown = 'unknown',
+  Unsupported = 'unsupported',
   Video = 'video',
 }
