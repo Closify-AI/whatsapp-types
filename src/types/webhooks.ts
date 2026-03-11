@@ -41,55 +41,6 @@ import type {
   WebhookMessageTypesEnum,
 } from './enums.ts';
 
-export type WebhookStatusPricingType = {
-  billable: boolean;
-  category: ConversationTypesEnum;
-  /**
-   * Conversation-Based Pricing
-   * Per-Message Pricing
-   */
-  pricing_model: 'CBP' | 'PMP';
-  type: PricingTypeEnum;
-};
-
-export type WebhookStatusConversationType = {
-  id?: string;
-  origin: {
-    type: ConversationCategoryEnum;
-  };
-  expiration_timestamp?: string;
-};
-
-export type WebhookStatusErrorType = {
-  code: number;
-  href?: string;
-  title: string;
-  message: string;
-  error_data: {
-    details: string
-  };
-};
-
-export type WebhookStatusType = {
-  biz_opaque_callback_data?: string;
-  conversation: WebhookStatusConversationType;
-  errors?: WebhookStatusErrorType[];
-  id: string;
-  message?: {
-    recipient_id: string;
-  };
-  pricing: WebhookStatusPricingType;
-  parent_recipient_user_id?: string;
-  recipient_id: string;
-  recipient_identity_key_hash?: string;
-  recipient_participant_id?: string;
-  recipient_type?: string;
-  recipient_user_id: string;
-  status: StatusEnum;
-  timestamp: string;
-  type: string;
-};
-
 export type WebhookAudioMessageType = {
   id: string;
   mime_type: string;
@@ -182,10 +133,15 @@ export type WebhookReferralType = {
   source_id: string;
   headline: string;
   body: string;
-  media_type: ImageMediaTypesEnum | VideoMediaTypesEnum;
-  image_url: string;
-  video_url: string;
-  thumbnail_url: string;
+
+export type WebhookStatusErrorType = {
+  code: number;
+  href?: string;
+  title: string;
+  message: string;
+  error_data: {
+    details: string
+  };
 };
 
 export type WebhookStickerMessageType = {
@@ -233,6 +189,45 @@ export type WebhookMessageType = {
   timestamp: string;
   type: WebhookMessageTypesEnum;
   video?: WebhookVideoMessageType;
+};
+
+export type WebhookStatusConversationType = {
+  id?: string;
+  origin: {
+    type: ConversationCategoryEnum;
+  };
+  expiration_timestamp?: string;
+};
+
+export type WebhookStatusPricingType = {
+  billable: boolean;
+  category: ConversationTypesEnum;
+  /**
+   * Conversation-Based Pricing
+   * Per-Message Pricing
+   */
+  pricing_model: 'CBP' | 'PMP';
+  type: PricingTypeEnum;
+};
+
+export type WebhookStatusType = {
+  biz_opaque_callback_data?: string;
+  conversation: WebhookStatusConversationType;
+  errors?: WebhookStatusErrorType[];
+  id: string;
+  message?: {
+    recipient_id: string;
+  };
+  pricing: WebhookStatusPricingType;
+  parent_recipient_user_id?: string;
+  recipient_id: string;
+  recipient_identity_key_hash?: string;
+  recipient_participant_id?: string;
+  recipient_type?: string;
+  recipient_user_id: string;
+  status: StatusEnum;
+  timestamp: string;
+  type: string;
 };
 
 export type WebhookContactType = {
