@@ -11,6 +11,9 @@
   "engines": {
     "node": ">=16.19.1"
   },
+  "files": [
+    "dist"
+  ],
   "homepage": "https://github.com/Closify-AI/whatsapp-types#readme",
   "keywords": [
     "WhatsApp",
@@ -22,7 +25,7 @@
     "Cloud API"
   ],
   "license": "MIT",
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
   "name": "@closify-ai/whatsapp-business-types",
   "publishConfig": {
     "access": "public",
@@ -39,6 +42,6 @@
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "type": "module",
-  "types": "./dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "version": "1.0.0-beta.4"
 }

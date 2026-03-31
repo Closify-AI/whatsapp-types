@@ -56,6 +56,9 @@ web_modules/
 # TypeScript configuration file
 tsconfig*.json
 
+# TypeScript source files
+src
+
 # npm configuration file
 .npmrc
 
