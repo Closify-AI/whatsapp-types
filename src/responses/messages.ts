@@ -23,34 +23,46 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import { z } from 'zod';
-import type { WebhookType } from '../types/webhooks.js';
+import type { AudioMediaTypesEnum, DocumentMediaTypesEnum, ImageMediaTypesEnum, StickerMediaTypesEnum, VideoMediaTypesEnum } from "../enums.js";
 
-// Define Zod schemas for your webhook types
-// These schemas will also infer the TypeScript types, making your type definitions more robust.
-const WebhookChangesSchema = z.looseObject({ // Use .looseObject() if there can be other fields you don't explicitly validate
-  field: z.string(),
-  // Add other properties of WebhookChangesType if they are relevant for validation
-  // e.g., value: z.any().optional(),
-});
+export type MediaGetResponseType = {
+  messaging_product: 'whatsapp',
+  url: string,
+  mime_type: AudioMediaTypesEnum | DocumentMediaTypesEnum | ImageMediaTypesEnum | StickerMediaTypesEnum | VideoMediaTypesEnum,
+  sha256: string,
+  file_size: number,
+  id: string
+}
 
-const WebhookEntrySchema = z.looseObject({
-  id: z.string().optional(), // Assuming 'id' might be present
-  changes: z.array(WebhookChangesSchema).optional(),
-  // Add other properties of WebhookEntryType if they are relevant for validation
-});
+export type MediaPostResponseType = {
+  id?: string;
+}
 
-const WebhookSchema = z.looseObject({
-  object: z.literal('whatsapp_business_account'), // Ensures 'object' is exactly this string
-  entry: z.array(WebhookEntrySchema),
-  // Add other top-level properties if they exist and need validation
-});
+export type MessageResponseType = {
+  messaging_product: 'whatsapp';
+  contacts: {
+    input: string,
+    wa_id: string,
+  }[];
+  messages: { id: string }[];
+}
 
-// Type guard function using Zod
-export function isWebhookType(body: any): body is WebhookType {
-  const result = WebhookSchema.safeParse(body);
-  if (!result.success) {
-    console.error('Zod validation error:', result.error);
-  }
-  return result.success;
+export type MessageSuccessResponseType = {
+  success: boolean
+}
+
+export type IncompatibleMessageResponseType = {
+  errors: {
+    code: number,
+    href: string,
+    title: string
+  }[];
+  id: string;
+  message: {
+    recipient_id: string;
+  },
+  recipient_id: string;
+  status: 'failed';
+  timestamp: string;
+  type: 'message';
 }

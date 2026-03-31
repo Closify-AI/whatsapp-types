@@ -23,12 +23,8 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import type {
-  RequestHeadersType,
-  HttpsClientResponseClass,
-  ResponseJSONBodyType,
-} from './httpsClient.ts';
 import type { HttpMethodsEnum } from './enums.ts';
+import type { HttpsClientResponseClass, RequestHeadersType, ResponseJSONBodyType, } from './https-client.js';
 
 export type GeneralRequestBodyType = Record<string, any>;
 

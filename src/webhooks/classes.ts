@@ -23,30 +23,13 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export enum HttpMethodsEnum {
-  Delete = 'DELETE',
-  Get = 'GET',
-  Post = 'POST',
-  Put = 'PUT',
-}
+import type { BaseClass } from "../types/base.js";
+import type { WAConfigType } from "../types/config.js";
+import type { CallbackType } from "./messages.js";
 
-export enum WAConfigEnum {
-  AccessToken = 'CLOUD_API_ACCESS_TOKEN',
-  APIVersion = 'CLOUD_API_VERSION',
-  AppId = 'M4D_APP_ID',
-  AppSecret = 'M4D_APP_SECRET',
-  BaseURL = 'WA_BASE_URL',
-  BusinessAcctId = 'WA_BUSINESS_ACCOUNT_ID',
-  Debug = 'DEBUG',
-  ListenerPort = 'LISTENER_PORT',
-  MaxRetriesAfterWait = 'MAX_RETRIES_AFTER_WAIT',
-  PhoneNumberId = 'WA_PHONE_NUMBER_ID',
-  RequestTimeout = 'REQUEST_TIMEOUT',
-  WebhookEndpoint = 'WEBHOOK_ENDPOINT',
-  WebhookVerificationToken = 'WEBHOOK_VERIFICATION_TOKEN',
-}
-
-export enum WARequiredConfigEnum {
-  AccessToken = 'CLOUD_API_ACCESS_TOKEN',
-  APIVersion = 'CLOUD_API_VERSION',
+export declare class WebhooksClass extends BaseClass {
+  constructor(config: WAConfigType, userAgent: string);
+  start(cb: CallbackType): boolean;
+  isStarted(): boolean;
+  stop(cb: (err?: Error) => any): boolean;
 }

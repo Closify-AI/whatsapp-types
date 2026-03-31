@@ -23,39 +23,12 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import type { HttpMethodsEnum } from './enums.ts';
-import { IncomingMessage } from 'http';
+import type { SemanticVersionStringType } from './version.js';
 
-export type ResponseHeaderValueType = string | string[] | undefined;
-
-export type RequestHeadersType = Record<string, string | number | string[]>;
-
-export type ResponseHeadersType = Record<string, ResponseHeaderValueType>;
-
-export type ResponseJSONBodyType = Record<string, unknown>;
-
-export type RequestDataType = Record<string, unknown> | string;
-
-export type TimeoutErrorType = TypeError & { code?: string };
-
-export declare class HttpsClientResponseClass {
-	constructor(resp: IncomingMessage);
-	statusCode: () => number;
-	headers: () => ResponseHeadersType;
-	rawResponse: () => IncomingMessage;
-	responseBodyToJSON: () => Promise<ResponseJSONBodyType>;
-}
-
-export declare class HttpsClientClass {
-	constructor();
-	clearSockets: () => boolean;
-	sendRequest: (
-		host: string,
-		port: number,
-		path: string,
-		method: HttpMethodsEnum,
-		headers: RequestHeadersType,
-		timeout: number,
-		data?: RequestDataType,
-	) => Promise<HttpsClientResponseClass>;
+export declare class WhatsAppClass {
+	constructor(senderNumberId?: number);
+	version: () => SemanticVersionStringType;
+	updateTimeout(ms: number): boolean;
+	updateSenderNumberId(phoneNumberId: number): boolean;
+	updateAccessToken(accessToken: string): boolean;
 }

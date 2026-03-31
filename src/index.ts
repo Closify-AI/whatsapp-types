@@ -23,240 +23,41 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-// types
-export type { WAConfigType } from './types/config.js';
-export type { LoggerInterface } from './types/logger.js';
+// #region Requests
+export * from './requests/classes.js';
+export * from './requests/enums.js';
+export * from './requests/flows.js';
+export * from './requests/messages.js';
+export * from './requests/templates.js';
+// #endregion
 
-export {
-  AudioMediaTypesEnum,
-  ButtonPositionEnum,
-  ButtonTypesEnum,
-  ComponentTypesEnum,
-  ContactAddressTypesEnum,
-  ConversationCategoryEnum,
-  ConversationTypesEnum,
-  CurrencyCodesEnum,
-  DocumentMediaTypesEnum,
-  HttpMethodsEnum,
-  ImageMediaTypesEnum,
-  InteractiveTypesEnum,
-  LanguagesEnum,
-  MessageTypesEnum,
-  ParameterTypesEnum,
-  PricingCategoryEnum,
-  PricingTypeEnum,
-  ReferralSourceTypesEnum,
-  StatusEnum,
-  StickerMediaTypesEnum,
-  SystemChangeTypesEnum,
-  TemplateCategoryEnum,
-  TemplateIndustryEnum,
-  TemplateLibraryParameterEnum,
-  TemplateStatusEnum,
-  TemplateTopicEnum,
-  TemplateUseCaseEnum,
-  UnsupportedTypesEnum,
-  VideoMediaTypesEnum,
-  WAConfigEnum,
-  WARequiredConfigEnum,
-  WebhookMessageTypesEnum
-} from './types/enums.js';
+// #region Responses
+export * from './responses/flows.js';
+export * from './responses/messages.js';
+// #endregion
 
-export type {
-  HttpsClientClass,
-  HttpsClientResponseClass,
-  RequestDataType,
-  RequestHeadersType,
-  ResponseHeadersType,
-  ResponseHeaderValueType,
-  ResponseJSONBodyType,
-  TimeoutErrorType
-} from './types/httpsClient.js';
+// #region Types
+export * from './types/classes.js';
+export * from './types/config.js';
+export * from './types/enums.js';
+export * from './types/https-client.js';
+export * from './types/https-server.js';
+export * from './types/logger.js';
+export * from './types/requester.js';
+export * from './types/two-step-verification.js';
+export * from './types/version.js';
+// #endregion
 
-export type {
-  AddressInteractiveType,
-  AudioMediaType,
-  AudioMessageRequestBodyType,
-  AuthenticationTemplateRequestBodyType,
-  ButtonComponentType,
-  ButtonInteractiveType,
-  CallToActionInteractiveType,
-  CarouselComponentType,
-  CarouselParametersType,
-  CatalogButtonParametersType,
-  ContactMessageType,
-  ContactsMessageRequestBodyType,
-  CouponButtonParametersType,
-  CurrencyParametersType,
-  DateTimeParametersType,
-  DocumentMediaMessageType,
-  DocumentMessageRequestBodyType,
-  DocumentParametersType,
-  FlowButtonParametersType,
-  FlowButtonsComponentType,
-  FlowInteractiveType,
-  FlowRequestBodyType,
-  FlowTemplateCreateRequestBodyType,
-  GeneralMessageBodyType,
-  HostedAudioMediaType,
-  HostedDocumentMediaType,
-  HostedImageMediaType,
-  HostedStickerMediaType,
-  ImageMediaMessageType,
-  ImageMessageRequestBodyType,
-  ImageParametersType,
-  InteractiveMessageRequestBodyType,
-  InteractiveMessageType,
-  InteractiveTemplateRequestBodyType,
-  LimitedTimeOfferParametersType,
-  ListInteractiveType,
-  ListSectionType,
-  LocationMessageType,
-  LocationParametersType,
-  LocationRequestActionType,
-  LocationRequestInteractiveType,
-  LocationTemplateRequestBodyType,
-  MarkAsReadMessageType,
-  MarkAsReadRequestBodyType,
-  MediaTemplateRequestBodyType,
-  MessageActionType,
-  MessageAddressActionType,
-  MessageAddressBaseType,
-  MessageAddressesType,
-  MessageButtonType,
-  MessageComponentType,
-  MessageCTAButtonActionType,
-  MessageCurrencyType,
-  MessageDateTimeType,
-  MessageEmailType,
-  MessageFlowActionType,
-  MessageHeaderType,
-  MessageLanguageType,
-  MessageNameType,
-  MessageOrgType,
-  MessagePhoneType,
-  MessageProductType,
-  MessageReplyButtonType,
-  MessageRequestBodyType,
-  MessageRowType,
-  MessagesClass,
-  MessageSectionType,
-  MessageSimpleTextType,
-  MessagesResponseType,
-  MessageURLType,
-  MetaAudioMediaType,
-  MetaDocumentMediaType,
-  MetaHostedVideoMediaType,
-  MetaImageMediaType,
-  MetaStickerMediaType,
-  MpmButtonParametersType,
-  MultiProductSectionType,
-  NamedFlowParametersType,
-  ProductInteractiveType,
-  ProductListInteractiveType,
-  ProductParametersType,
-  QuickReplyButtonParametersType,
-  ReactionMessageRequestBodyType,
-  ReactionMessageType,
-  RegisteredFlowButtonsParametersType,
-  ReplyToMessageType,
-  SelfHostedVideoMediaType,
-  StickerMediaMessageType,
-  StickerMessageRequestBodyType,
-  TapTargetParametersType,
-  TapTargetTemplateRequestBodyType,
-  TemplateButtonMessageType,
-  TemplateCarouselMessageType,
-  TemplateCreateResponseBodyType,
-  TemplateLibraryButtonType,
-  TemplateLibraryCreateRequestBodyType,
-  TemplateLibraryPhoneNumberButtonInputType,
-  TemplateLibraryQueryRequestBodyType,
-  TemplateLibraryResponseBodyType,
-  TemplateLibraryURLButtonInputType,
-  TemplateMessageType,
-  TemplateSingleProductMessageType,
-  TextMessageRequestBodyType,
-  TextMessageType,
-  TextNamedParametersType,
-  TextPositionalParametersType,
-  TextTemplateRequestBodyType,
-  TypingIndicatorMessageType,
-  TypingIndicatorRequestBodyType,
-  UnnamedFlowParametersType,
-  UnregisteredFlowButtonsParametersType,
-  URLButtonParametersType,
-  VideoMediaMessageType,
-  VideoMessageRequestBodyType,
-  VideoParametersType
-} from './types/messages.js';
+// #region Webhooks
+export * from './webhooks/classes.js';
+export * from './webhooks/enums.js';
+export * from './webhooks/messages.js';
+// #endregion
 
-export type {
-  GeneralHeaderInterface,
-  GeneralRequestBodyType,
-  RequesterClass,
-  RequesterResponseInterface
-} from './types/requester.js';
+// #region WebhooksCheckers
+export * from './webhooks-checkers/messages.js';
+// #endregion
 
-export type {
-  SetPinResponseType,
-  TwoStepVerificationClass,
-  TwoStepVerificationType
-} from './types/twoStepVerification.js';
+export * from './enums.js';
 
-export type {
-  SemanticVersionLabelsType,
-  SemanticVersionStringType
-} from './types/version.js';
-
-export type {
-  WebhookAudioMessageType,
-  WebhookButtonMessageType,
-  WebhookButtonReplyInteractiveMessageType,
-  WebhookCallbackType,
-  WebhookChangeType,
-  WebhookContactAddressMessageType,
-  WebhookContactEmailMessageType,
-  WebhookContactMessageType,
-  WebhookContactNameMessageType,
-  WebhookContactOrgMessageType,
-  WebhookContactPhoneMessageType,
-  WebhookContactType,
-  WebhookContactURLMessageType,
-  WebhookContextMessageBusinessType,
-  WebhookContextMessageForwardedType,
-  WebhookDocumentMessageType,
-  WebhookEditImageMessageType,
-  WebhookEditMessageType,
-  WebhookEntryType,
-  WebhookErrorMessageType,
-  WebhookIdentityMessageType,
-  WebhookImageMessageType,
-  WebhookInteractiveMessageType,
-  WebhookListReplyInteractiveMessageType,
-  WebhookLocationMessageType,
-  WebhookMessageType,
-  WebhookMetadataType,
-  WebhookNfmReplyInteractiveMessageType,
-  WebhookOrderMessageType,
-  WebhookProductItemType,
-  WebhookReactionMessageType,
-  WebhookReferralType,
-  WebhookRevokeMessageType,
-  WebhooksClass,
-  WebhookStatusConversationType,
-  WebhookStatusErrorType,
-  WebhookStatusPricingType,
-  WebhookStatusType,
-  WebhookStickerMessageType,
-  WebhookSubscribeQueryType,
-  WebhookSystemMessageType,
-  WebhookTextMessageType,
-  WebhookType,
-  WebhookUnsupportedMessageType,
-  WebhookValueType,
-  WebhookVideoMessageType,
-} from './types/webhooks.js';
-
-// typeCheckers
-export { isWebhookType } from './typesCheckers/webhooksCheckers.js';
+export * as WhatsApp from './bundler.js';

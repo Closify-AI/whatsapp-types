@@ -23,27 +23,30 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-import { ServerResponse, type IncomingHttpHeaders } from 'http';
-import type { BaseClass } from './base.ts';
-import type { WAConfigType } from './config.ts';
 import type {
-  ContactAddressTypesEnum,
-  ConversationCategoryEnum,
+  IncomingHttpHeaders,
+  ServerResponse
+} from 'http';
+import type {
   CurrencyCodesEnum,
   DocumentMediaTypesEnum,
   ImageMediaTypesEnum,
+  StickerMediaTypesEnum,
+  VideoMediaTypesEnum
+} from '../enums.js';
+import type {
+  ContactAddressTypesEnum,
+  ConversationCategoryEnum,
+  MessageWebhookStatusEnum,
+  MessageWebhookTypesEnum,
   PricingCategoryEnum,
   PricingTypeEnum,
   ReferralSourceTypesEnum,
-  StatusEnum,
-  StickerMediaTypesEnum,
   SystemChangeTypesEnum,
   UnsupportedTypesEnum,
-  VideoMediaTypesEnum,
-  WebhookMessageTypesEnum,
-} from './enums.ts';
+} from './enums.js';
 
-export type WebhookAudioMessageType = {
+export type AudioMessageWebhookType = {
   id: string;
   mime_type: string;
   sha_256: string;
@@ -51,12 +54,12 @@ export type WebhookAudioMessageType = {
   voice: boolean;
 }
 
-export type WebhookButtonMessageType = {
+export type ButtonMessageWebhookType = {
   payload: string;
   text: string;
 }
 
-export type WebhookContactAddressMessageType = {
+export type ContactAddressMessageWebhookType = {
   city: string;
   country: string;
   country_code: string;
@@ -66,12 +69,12 @@ export type WebhookContactAddressMessageType = {
   zip: string;
 }
 
-export type WebhookContactEmailMessageType = {
+export type ContactEmailMessageWebhookType = {
   email: string;
   type: string;
 }
 
-export type WebhookContactNameMessageType = {
+export type ContactNameMessageWebhookType = {
   formatted_name: string;
   first_name: string;
   last_name: string;
@@ -80,34 +83,34 @@ export type WebhookContactNameMessageType = {
   prefix: string;
 }
 
-export type WebhookContactOrgMessageType = {
+export type ContactOrgMessageWebhookType = {
   company: string;
   department: string;
   title: string;
 }
 
-export type WebhookContactPhoneMessageType = {
+export type ContactPhoneMessageWebhookType = {
   phone: string;
   type: string;
   wa_id: string;
 }
 
-export type WebhookContactURLMessageType = {
+export type ContactURLMessageWebhookType = {
   url: string;
   type: string;
 }
 
-export type WebhookContactMessageType = {
-  addresses: WebhookContactAddressMessageType[];
+export type ContactMessageWebhookType = {
+  addresses: ContactAddressMessageWebhookType[];
   birthday: string;
-  emails: WebhookContactEmailMessageType[];
-  name: WebhookContactNameMessageType;
-  org: WebhookContactOrgMessageType;
-  phones: WebhookContactPhoneMessageType[];
-  urls: WebhookContactURLMessageType[];
+  emails: ContactEmailMessageWebhookType[];
+  name: ContactNameMessageWebhookType;
+  org: ContactOrgMessageWebhookType;
+  phones: ContactPhoneMessageWebhookType[];
+  urls: ContactURLMessageWebhookType[];
 }
 
-export type WebhookContextMessageBusinessType = {
+export type ContextBusinessMessageWebhookType = {
   from: string;
   id: string;
   referred_product: {
@@ -116,12 +119,12 @@ export type WebhookContextMessageBusinessType = {
   };
 }
 
-export type WebhookContextMessageForwardedType = {
+export type ContextForwardedMessageWebhookType = {
   forwarded: boolean;
   frequently_forwarded: boolean;
 }
 
-export type WebhookDocumentMessageType = {
+export type DocumentMessageWebhookType = {
   caption: string;
   filename: string;
   sha256: string;
@@ -130,7 +133,7 @@ export type WebhookDocumentMessageType = {
   url?: string;
 }
 
-export type WebhookEditImageMessageType = {
+export type EditImageMessageWebhookType = {
   caption: string;
   mime_type: ImageMediaTypesEnum;
   sha256: string;
@@ -138,18 +141,18 @@ export type WebhookEditImageMessageType = {
   url: string;
 }
 
-export type WebhookEditMessageType = {
+export type EditMessageWebhookType = {
   original_message_id: string;
   message: {
     context: {
       id?: string
     },
     type: 'image',
-    image: WebhookEditImageMessageType;
+    image: EditImageMessageWebhookType;
   }
 }
 
-export type WebhookErrorMessageType = {
+export type ErrorsMessageWebhookType = {
   code: number;
   title: string;
   message: string;
@@ -159,13 +162,13 @@ export type WebhookErrorMessageType = {
   href?: string;
 }
 
-export type WebhookIdentityMessageType = {
+export type IdentityMessageWebhookType = {
   acknowledged: string;
   created_timestamp: string;
   hash: string;
 }
 
-export type WebhookImageMessageType = {
+export type ImageMessageWebhookType = {
   caption: string;
   sha256: string;
   id: string;
@@ -173,7 +176,7 @@ export type WebhookImageMessageType = {
   url?: string;
 }
 
-export type WebhookLocationMessageType = {
+export type LocationMessageWebhookType = {
   address: string;
   latitude: number;
   longitude: number;
@@ -181,7 +184,7 @@ export type WebhookLocationMessageType = {
   url: string;
 }
 
-export type WebhookButtonReplyInteractiveMessageType = {
+export type ButtonReplyInteractiveMessageWebhookType = {
   type: 'button_reply',
   button_reply: {
     id: string;
@@ -189,7 +192,7 @@ export type WebhookButtonReplyInteractiveMessageType = {
   };
 }
 
-export type WebhookListReplyInteractiveMessageType = {
+export type ListReplyInteractiveMessageWebhookType = {
   type: 'list_reply',
   list_reply: {
     id: string;
@@ -198,41 +201,43 @@ export type WebhookListReplyInteractiveMessageType = {
   };
 }
 
-export type WebhookNfmReplyInteractiveMessageType = {
-  type: 'nfm_reply';
+export type NfmReplyInteractiveMessageWebhookType = {
+  type: MessageWebhookTypesEnum.Interactive | MessageWebhookTypesEnum.NaturalFlow;
+  action: string;
   nfm_reply: {
-    body: string;
-    name: string;
+    body?: string;
+    name?: string;
     response_json: string;
   };
+  timestamp: string;
 }
 
-export type WebhookInteractiveMessageType = {
+export type InteractiveMessageWebhookType = {
   type:
-  | WebhookButtonReplyInteractiveMessageType
-  | WebhookListReplyInteractiveMessageType
-  | WebhookNfmReplyInteractiveMessageType;
+  | ButtonReplyInteractiveMessageWebhookType
+  | ListReplyInteractiveMessageWebhookType
+  | NfmReplyInteractiveMessageWebhookType;
 }
 
-export type WebhookProductItemType = {
+export type ProductItemMessageWebhookType = {
   product_retailer_id: string;
   quantity: number;
   item_price: number;
   currency: CurrencyCodesEnum;
 }
 
-export type WebhookOrderMessageType = {
+export type OrderMessageWebhookType = {
   catalog_id: string;
   text: string;
-  product_items: WebhookProductItemType;
+  product_items: ProductItemMessageWebhookType;
 }
 
-export type WebhookReactionMessageType = {
+export type ReactionMessageWebhookType = {
   message_id: string;
   emoji: string;
 }
 
-export type WebhookReferralType = {
+export type ReferralMessageWebhookType = {
   source_url: string;
   source_type: ReferralSourceTypesEnum;
   source_id: string;
@@ -248,11 +253,11 @@ export type WebhookReferralType = {
   }
 }
 
-export type WebhookRevokeMessageType = {
+export type RevokeMessageWebhookType = {
   original_message_id: string;
 }
 
-export type WebhookStickerMessageType = {
+export type StickerMessageWebhookType = {
   mime_type: StickerMediaTypesEnum;
   sha256: string;
   id: string;
@@ -260,7 +265,7 @@ export type WebhookStickerMessageType = {
   animated: boolean;
 }
 
-export type WebhookSystemMessageType = {
+export type SystemMessageWebhookType = {
   body: string;
   identity?: string;
   wa_id: string;
@@ -268,15 +273,15 @@ export type WebhookSystemMessageType = {
   customer?: string;
 }
 
-export type WebhookTextMessageType = {
+export type TextMessageWebhookType = {
   body: string;
 }
 
-export type WebhookUnsupportedMessageType = {
+export type UnsupportedMessageWebhookType = {
   type: UnsupportedTypesEnum;
 }
 
-export type WebhookVideoMessageType = {
+export type VideoMessageWebhookType = {
   caption: string;
   sha256: string;
   id: string;
@@ -284,35 +289,35 @@ export type WebhookVideoMessageType = {
   url?: string;
 }
 
-export type WebhookMessageType = {
-  audio?: WebhookAudioMessageType;
-  button?: WebhookButtonMessageType;
-  contacts?: WebhookContactMessageType[];
-  context?: WebhookContextMessageBusinessType | WebhookContextMessageForwardedType;
-  document?: WebhookDocumentMessageType;
-  edit?: WebhookEditMessageType;
-  errors?: WebhookErrorMessageType[];
+export type MessagesWebhookType = {
+  audio?: AudioMessageWebhookType;
+  button?: ButtonMessageWebhookType;
+  contacts?: ContactMessageWebhookType[];
+  context?: ContextBusinessMessageWebhookType | ContextForwardedMessageWebhookType;
+  document?: DocumentMessageWebhookType;
+  edit?: EditMessageWebhookType;
+  errors?: ErrorsMessageWebhookType[];
   from: string;
   group_id?: string;
   id: string;
-  identity?: WebhookIdentityMessageType;
-  image?: WebhookImageMessageType;
-  interactive?: WebhookInteractiveMessageType;
-  location?: WebhookLocationMessageType;
-  order?: WebhookOrderMessageType;
-  reaction?: WebhookReactionMessageType;
-  referral: WebhookReferralType;
-  revoke?: WebhookRevokeMessageType;
-  sticker?: WebhookStickerMessageType;
-  system?: WebhookSystemMessageType;
-  text?: WebhookTextMessageType;
+  identity?: IdentityMessageWebhookType;
+  image?: ImageMessageWebhookType;
+  interactive?: InteractiveMessageWebhookType;
+  location?: LocationMessageWebhookType;
+  order?: OrderMessageWebhookType;
+  reaction?: ReactionMessageWebhookType;
+  referral?: ReferralMessageWebhookType;
+  revoke?: RevokeMessageWebhookType;
+  sticker?: StickerMessageWebhookType;
+  system?: SystemMessageWebhookType;
+  text?: TextMessageWebhookType;
   timestamp: string;
-  type: WebhookMessageTypesEnum;
-  unsupported?: WebhookUnsupportedMessageType;
-  video?: WebhookVideoMessageType;
+  type: MessageWebhookTypesEnum;
+  unsupported?: UnsupportedMessageWebhookType;
+  video?: VideoMessageWebhookType;
 }
 
-export type WebhookStatusConversationType = {
+export type StatusConversationMessageWebhookType = {
   id?: string;
   origin: {
     type: ConversationCategoryEnum;
@@ -320,7 +325,7 @@ export type WebhookStatusConversationType = {
   expiration_timestamp?: string;
 }
 
-export type WebhookStatusErrorType = {
+export type StatusErrorsMessageWebhookType = {
   code: number;
   href: string;
   title: string;
@@ -330,7 +335,7 @@ export type WebhookStatusErrorType = {
   };
 }
 
-export type WebhookStatusPricingType = {
+export type StatusPricingMessageWebhookType = {
   billable: boolean;
   category: PricingCategoryEnum;
   /**
@@ -341,66 +346,67 @@ export type WebhookStatusPricingType = {
   type: PricingTypeEnum;
 }
 
-export type WebhookStatusType = {
+export type StatusesMessageWebhookType = {
   biz_opaque_callback_data?: string;
-  conversation: WebhookStatusConversationType;
-  errors?: WebhookStatusErrorType[];
+  conversation: StatusConversationMessageWebhookType;
+  errors?: StatusErrorsMessageWebhookType[];
   id: string;
   message?: {
     recipient_id: string;
   };
-  pricing: WebhookStatusPricingType;
+  pricing: StatusPricingMessageWebhookType;
   parent_recipient_user_id?: string;
   recipient_id: string;
   recipient_identity_key_hash?: string;
   recipient_participant_id?: string;
   recipient_type?: 'group';
   recipient_user_id?: string;
-  status: StatusEnum;
+  status: MessageWebhookStatusEnum;
   timestamp: string;
   type?: string;
 }
 
-export type WebhookContactType = {
-  wa_id: string;
+export type ContactsMessageWebhookType = {
+  wa_id?: string;
   profile: {
     name: string;
+    username?: string;
   };
   identity_key_hash?: string;
   user_id?: string;
   parent_user_id?: string;
 }
 
-export type WebhookMetadataType = {
+export type MetadataMessageWebhookType = {
   display_phone_number: string;
   phone_number_id: string;
 }
 
-export type WebhookValueType = {
+export type ValueMessageWebhookType = {
   messaging_product: 'whatsapp';
-  contacts?: WebhookContactType[];
-  errors?: WebhookErrorMessageType[];
-  messages?: WebhookMessageType[];
-  metadata: WebhookMetadataType[];
-  statuses?: WebhookStatusType[];
+  contacts?: ContactsMessageWebhookType[];
+  errors?: ErrorsMessageWebhookType[];
+  messages?: MessagesWebhookType[];
+  metadata: MetadataMessageWebhookType[];
+  statuses?: StatusesMessageWebhookType[];
 }
 
-export type WebhookChangeType = {
+export type ChangesMessageWebhookType = {
   field: string;
-  value: WebhookValueType;
+  value: ValueMessageWebhookType;
 }
 
-export type WebhookEntryType = {
+export type EntryMessageWebhookType = {
   id: string;
-  changes: WebhookChangeType[];
+  changes: ChangesMessageWebhookType[];
 }
 
-export type WebhookType = {
+export type MessageWebhookType = {
   object: 'whatsapp_business_account';
-  entry: WebhookEntryType[];
+  entry: EntryMessageWebhookType[];
 }
 
-export type WebhookSubscribeQueryType = {
+export type SubscribeQueryType = {
   hub: {
     mode: 'subscribe';
     challenge: string;
@@ -408,17 +414,10 @@ export type WebhookSubscribeQueryType = {
   };
 }
 
-export type WebhookCallbackType = (
+export type CallbackType = (
   statusCode: number,
   headers: IncomingHttpHeaders,
-  body?: WebhookType,
+  body?: MessageWebhookType,
   response?: ServerResponse,
   error?: Error,
 ) => any;
-
-export declare class WebhooksClass extends BaseClass {
-  constructor(config: WAConfigType, userAgent: string);
-  start(cb: WebhookCallbackType): boolean;
-  isStarted(): boolean;
-  stop(cb: (err?: Error) => any): boolean;
-}

@@ -23,30 +23,22 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-export enum HttpMethodsEnum {
-  Delete = 'DELETE',
-  Get = 'GET',
-  Post = 'POST',
-  Put = 'PUT',
+import type { TemplateCategoriesEnum, TemplateStatusesEnum } from "../requests/enums.js";
+
+export type FlowTemplateCreatedResponseType = {
+  id: string;
+  status: TemplateStatusesEnum;
+  category: TemplateCategoriesEnum;
 }
 
-export enum WAConfigEnum {
-  AccessToken = 'CLOUD_API_ACCESS_TOKEN',
-  APIVersion = 'CLOUD_API_VERSION',
-  AppId = 'M4D_APP_ID',
-  AppSecret = 'M4D_APP_SECRET',
-  BaseURL = 'WA_BASE_URL',
-  BusinessAcctId = 'WA_BUSINESS_ACCOUNT_ID',
-  Debug = 'DEBUG',
-  ListenerPort = 'LISTENER_PORT',
-  MaxRetriesAfterWait = 'MAX_RETRIES_AFTER_WAIT',
-  PhoneNumberId = 'WA_PHONE_NUMBER_ID',
-  RequestTimeout = 'REQUEST_TIMEOUT',
-  WebhookEndpoint = 'WEBHOOK_ENDPOINT',
-  WebhookVerificationToken = 'WEBHOOK_VERIFICATION_TOKEN',
-}
-
-export enum WARequiredConfigEnum {
-  AccessToken = 'CLOUD_API_ACCESS_TOKEN',
-  APIVersion = 'CLOUD_API_VERSION',
+export type FlowInteractiveMessageResponseType = {
+  contacts: {
+    input: string,
+    wa_id: string,
+  }[];
+  messages: { id: string }[];
+  meta: {
+    api_status: string,
+    version: string
+  };
 }
