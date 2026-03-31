@@ -39,6 +39,7 @@
     "jsx": "react-jsx",
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
+    "ignoreDeprecations": "6.0",
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",

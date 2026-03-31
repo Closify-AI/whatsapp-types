@@ -4,10 +4,14 @@
     "url": "https://github.com/Closify-AI/whatsapp-types/issues"
   },
   "dependencies": {
-    "@types/node": "^24.7.2",
-    "zod": "^4.1.12"
+    "@types/node": "^25.5.0",
+    "zod": "^4.3.6"
   },
   "description": "WhatsApp Business types for NodeJS",
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.2"
+  },
   "engines": {
     "node": ">=16.19.1"
   },
@@ -37,7 +41,7 @@
     "url": "git+https://github.com/Closify-AI/whatsapp-types.git"
   },
   "scripts": {
-    "build": "tsc --build --clean && tsc --build",
+    "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist --clean",
     "prepublishOnly": "rm -rf ./dist/* && npm run build",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
