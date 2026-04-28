@@ -8,8 +8,10 @@ on:
     types: [created]
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
+    env:
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,14 +20,15 @@ jobs:
       - run: npm -v
       - run: npm ci
       - run: npm test
-      - run: npm run build
 
   publish-npm:
-    needs: build
+    needs: tests
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
+    env:
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -34,6 +37,8 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: npm -v
       - run: npm ci
-      - run: npm publish
+      - run: npm run build
+      - run: npm run ci-only
+      - run: npm publish ./dist --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}

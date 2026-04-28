@@ -10,14 +10,8 @@
   "description": "WhatsApp Business types for NodeJS",
   "devDependencies": {
     "tsup": "^8.5.1",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
-  "engines": {
-    "node": ">=16.19.1"
-  },
-  "files": [
-    "dist"
-  ],
   "homepage": "https://github.com/Closify-AI/whatsapp-types#readme",
   "keywords": [
     "WhatsApp",
@@ -29,7 +23,7 @@
     "Cloud API"
   ],
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "index.js",
   "name": "@closify-ai/whatsapp-business-types",
   "publishConfig": {
     "access": "public",
@@ -42,10 +36,10 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist --clean",
-    "prepublishOnly": "rm -rf ./dist/* && npm run build",
+    "ci-only": "find . -maxdepth 1 -type f -exec cp -t ./dist {} +",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "type": "module",
-  "types": "dist/index.d.ts",
+  "types": "index.d.ts",
   "version": "1.0.0-beta.5"
 }
